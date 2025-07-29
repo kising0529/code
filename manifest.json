@@ -1,0 +1,43 @@
+{
+    "name": "AI Outfit for Today",
+    "short_name": "AI Outfit",
+    "description": "Weather-based AI outfit recommendations",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#667eea",
+    "theme_color": "#764ba2",
+    "orientation": "portrait",
+    "scope": "/",
+    "lang": "en",
+    "categories": ["lifestyle", "fashion", "weather"],
+    "icons": [
+      {
+        "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%23667eea' rx='20'/><text x='96' y='120' font-size='80' text-anchor='middle' fill='white'>🌤️</text></svg>",
+        "sizes": "192x192",
+        "type": "image/svg+xml",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%23667eea' rx='50'/><text x='256' y='320' font-size='200' text-anchor='middle' fill='white'>🌤️</text></svg>",
+        "sizes": "512x512",
+        "type": "image/svg+xml",
+        "purpose": "any maskable"
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 844'><rect width='390' height='844' fill='%23f8f9fa'/><rect x='20' y='100' width='350' height='200' fill='%23667eea' rx='20'/><text x='195' y='180' font-size='24' text-anchor='middle' fill='white'>AI Outfit for Today</text><text x='195' y='220' font-size='16' text-anchor='middle' fill='white'>Weather-smart fashion</text></svg>",
+        "sizes": "390x844",
+        "type": "image/svg+xml",
+        "form_factor": "narrow"
+      }
+    ],
+    "features": [
+      "Cross Platform",
+      "fast",
+      "simple"
+    ],
+    "edge_side_panel": {
+      "preferred_width": 400
+    }
+} 
