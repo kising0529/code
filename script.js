@@ -22,6 +22,120 @@ let appState = {
     }
 };
 
+// IndexedDB setup
+const DB_NAME = 'AIOutfitDB';
+const DB_VERSION = 1;
+const STORE_NAME = 'likedOutfits';
+let db;
+
+async function openIndexedDB() {
+    if (db && db.readyState === 'open') {
+        console.log('IndexedDB: Connection already open, reusing.');
+        return db;
+    }
+
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+        request.onupgradeneeded = (event) => {
+            db = event.target.result;
+            if (!db.objectStoreNames.contains(STORE_NAME)) {
+                const objectStore = db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+                objectStore.createIndex('timestamp', 'timestamp', { unique: false });
+                console.log('IndexedDB: Object store created');
+            }
+        };
+
+        request.onsuccess = (event) => {
+            db = event.target.result;
+            console.log('IndexedDB: Database opened successfully');
+            resolve(db);
+        };
+
+        request.onerror = (event) => {
+            console.error('IndexedDB: Database error:', event.target.errorCode);
+            reject(event.target.error);
+        };
+    });
+}
+
+async function saveLikedOutfit(outfitData) {
+    await openIndexedDB(); // Ensure DB is open before transaction
+
+    if (!db) {
+        console.error('IndexedDB not initialized after opening attempt.');
+        return;
+    }
+
+    const transaction = db.transaction([STORE_NAME], 'readwrite');
+    const store = transaction.objectStore(STORE_NAME);
+
+    // Generate a unique ID for the outfit
+    outfitData.id = `outfit-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+    outfitData.timestamp = Date.now();
+
+    const request = store.add(outfitData);
+
+    return new Promise((resolve, reject) => {
+        request.onsuccess = () => {
+            console.log('IndexedDB: Outfit saved successfully:', outfitData.id);
+            resolve(outfitData);
+        };
+        request.onerror = (event) => {
+            console.error('IndexedDB: Error saving outfit:', event.target.error);
+            reject(event.target.error);
+        };
+    });
+}
+
+async function getLikedOutfits() {
+    await openIndexedDB(); // Ensure DB is open before transaction
+
+    if (!db) {
+        console.error('IndexedDB not initialized after opening attempt.');
+        return [];
+    }
+
+    const transaction = db.transaction([STORE_NAME], 'readonly');
+    const store = transaction.objectStore(STORE_NAME);
+    const request = store.getAll();
+
+    return new Promise((resolve, reject) => {
+        request.onsuccess = () => {
+            console.log('IndexedDB: Liked outfits retrieved:', request.result);
+            resolve(request.result);
+        };
+        request.onerror = (event) => {
+            console.error('IndexedDB: Error getting liked outfits:', event.target.error);
+            reject(event.target.error);
+        };
+    });
+}
+
+async function deleteLikedOutfit(id) {
+    await openIndexedDB(); // Ensure DB is open before transaction
+
+    if (!db) {
+        console.error('IndexedDB not initialized after opening attempt.');
+        return;
+    }
+
+    const transaction = db.transaction([STORE_NAME], 'readwrite');
+    const store = transaction.objectStore(STORE_NAME);
+    const request = store.delete(id);
+
+    return new Promise((resolve, reject) => {
+        request.onsuccess = () => {
+            console.log('IndexedDB: Outfit deleted successfully:', id);
+            resolve();
+        };
+        request.onerror = (event) => {
+            console.error('IndexedDB: Error deleting outfit:', event.target.error);
+            reject(event.target.error);
+        };
+    });
+}
+
 // Amazon Affiliate Product Database
 const AMAZON_PRODUCTS = {
     // Women's Clothing
@@ -184,54 +298,111 @@ document.addEventListener('DOMContentLoaded', function() {
 // Main app initialization
 async function initializeApp() {
     console.log('🌍 AI Outfit for Today - Initializing global weather app...');
-    
+    console.log('DEBUG: Current page path:', window.location.pathname);
+
+    const loadingSectionCheck = document.getElementById('loading-state'); // Changed from loading-section
+    const weatherSectionCheck = document.getElementById('weather-section');
+    const outfitSectionCheck = document.getElementById('outfit-section');
+    const errorSectionCheck = document.getElementById('error-section');
+    const imageDisplayCheck = document.getElementById('image-display');
+    const imageActionsCheck = document.querySelector('.image-actions'); // Use querySelector for class
+
+    console.log('DEBUG initializeApp: loadingSectionCheck', loadingSectionCheck);
+    console.log('DEBUG initializeApp: weatherSectionCheck', weatherSectionCheck);
+    console.log('DEBUG initializeApp: outfitSectionCheck', outfitSectionCheck);
+    console.log('DEBUG initializeApp: errorSectionCheck', errorSectionCheck);
+    console.log('DEBUG initializeApp: imageDisplayCheck', imageDisplayCheck);
+    console.log('DEBUG initializeApp: imageActionsCheck', imageActionsCheck);
+
+    // Only proceed with weather/outfit logic if we are on index.html
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+        try {
+            appState.isLoading = true;
+            showLoadingState();
+
+            // Initialize IndexedDB
+            await openIndexedDB();
+            
+            // Step 1: Get user location
+            updateLoadingStep('location', 'active');
+            const position = await getCurrentPosition();
+            const { latitude, longitude } = position.coords;
+            appState.currentLocation = { latitude, longitude };
+            updateLoadingStep('location', 'completed');
+            
+            // Step 2: Fetch weather data
+            updateLoadingStep('weather', 'active');
+            const weatherData = await fetchWeatherData(latitude, longitude);
+            appState.currentWeather = weatherData;
+            updateLoadingStep('weather', 'completed');
+            
+            // Step 3: Generate outfit recommendation
+            updateLoadingStep('outfit', 'active');
+            const outfitData = generateOutfitRecommendation(weatherData, appState.selectedGender);
+            appState.outfitPrompt = outfitData.prompt;
+            appState.recommendedProducts = outfitData.products;
+            updateLoadingStep('outfit', 'completed');
+            
+            // Step 4: Prepare image generation
+            updateLoadingStep('image', 'active');
+            await new Promise(resolve => setTimeout(resolve, 500)); // Brief pause for UX
+            updateLoadingStep('image', 'completed');
+            
+            // Get location name for display
+            const locationName = await getLocationName(latitude, longitude);
+            
+            // Update UI with all data
+            await updateWeatherUI(weatherData, locationName);
+            updateOutfitUI(outfitData);
+            
+            // Show main content
+            hideLoadingState();
+            showMainContent();
+            
+            appState.isLoading = false;
+            console.log('✅ App initialized successfully');
+            
+        } catch (error) {
+            console.error('❌ App initialization failed:', error);
+            handleAppError(error);
+            appState.isLoading = false;
+        }
+    } else if (window.location.pathname === '/liked.html') {
+        // For liked.html, only initialize IndexedDB and display liked outfits
+        console.log('DEBUG: Initializing for liked.html');
+        try {
+            await openIndexedDB();
+            await displayLikedOutfits();
+            // Hide any loading states that might appear on liked.html if not explicitly handled
+            hideLoadingState(); 
+        } catch (error) {
+            console.error('❌ Liked page initialization failed:', error);
+            // Display an error message on the liked page if something goes wrong
+            const likedImagesGrid = document.getElementById('liked-images-grid');
+            if (likedImagesGrid) {
+                likedImagesGrid.innerHTML = '<p class="error-message">Failed to load liked images due to an error.</p>';
+            }
+        }
+    }
+}
+
+async function initializeLikedOutfitsPage() {
+    console.log('DEBUG: Initializing for liked.html');
     try {
-        appState.isLoading = true;
-        showLoadingState();
-        
-        // Step 1: Get user location
-        updateLoadingStep('location', 'active');
-        const position = await getCurrentPosition();
-        const { latitude, longitude } = position.coords;
-        appState.currentLocation = { latitude, longitude };
-        updateLoadingStep('location', 'completed');
-        
-        // Step 2: Fetch weather data
-        updateLoadingStep('weather', 'active');
-        const weatherData = await fetchWeatherData(latitude, longitude);
-        appState.currentWeather = weatherData;
-        updateLoadingStep('weather', 'completed');
-        
-        // Step 3: Generate outfit recommendation
-        updateLoadingStep('outfit', 'active');
-        const outfitData = generateOutfitRecommendation(weatherData, appState.selectedGender);
-        appState.outfitPrompt = outfitData.prompt;
-        appState.recommendedProducts = outfitData.products;
-        updateLoadingStep('outfit', 'completed');
-        
-        // Step 4: Prepare image generation
-        updateLoadingStep('image', 'active');
-        await new Promise(resolve => setTimeout(resolve, 500)); // Brief pause for UX
-        updateLoadingStep('image', 'completed');
-        
-        // Get location name for display
-        const locationName = await getLocationName(latitude, longitude);
-        
-        // Update UI with all data
-        await updateWeatherUI(weatherData, locationName);
-        updateOutfitUI(outfitData);
-        
-        // Show main content
-        hideLoadingState();
-        showMainContent();
-        
-        appState.isLoading = false;
-        console.log('✅ App initialized successfully');
-        
+        // Add a small delay to ensure DOM is fully ready, even with defer
+        await new Promise(resolve => setTimeout(resolve, 50)); 
+
+        await openIndexedDB();
+        await displayLikedOutfits();
+        // Hide any loading states that might appear on liked.html if not explicitly handled
+        hideLoadingState(); 
     } catch (error) {
-        console.error('❌ App initialization failed:', error);
-        handleAppError(error);
-        appState.isLoading = false;
+        console.error('❌ Liked page initialization failed:', error);
+        // Display an error message on the liked page if something goes wrong
+        const likedImagesGrid = document.getElementById('liked-images-grid');
+        if (likedImagesGrid) {
+            likedImagesGrid.innerHTML = '<p class="error-message">Failed to load liked images due to an error.</p>';
+        }
     }
 }
 
@@ -552,12 +723,20 @@ async function updateWeatherUI(weatherData, locationName) {
     const weather = WEATHER_CODES[current.weather_code] || WEATHER_CODES[1];
     
     // Update weather display
-    document.getElementById('weather-icon').textContent = weather.icon;
-    document.getElementById('temperature').textContent = `${Math.round(current.temperature_2m)}°C`;
-    document.getElementById('weather-condition').textContent = weather.condition;
-    document.getElementById('feels-like').textContent = `Feels like ${Math.round(current.apparent_temperature)}°C`;
-    document.getElementById('humidity').textContent = `Humidity ${current.relative_humidity_2m}%`;
-    document.getElementById('location-name').textContent = `📍 ${locationName}`;
+    const weatherIconElement = document.getElementById('weather-icon');
+    const temperatureElement = document.getElementById('temperature');
+    const weatherConditionElement = document.getElementById('weather-condition');
+    const feelsLikeElement = document.getElementById('feels-like');
+    const humidityElement = document.getElementById('humidity');
+    const locationNameElement = document.getElementById('location-name');
+    const localTimeElement = document.getElementById('local-time');
+
+    if (weatherIconElement) weatherIconElement.textContent = weather.icon;
+    if (temperatureElement) temperatureElement.textContent = `${Math.round(current.temperature_2m)}°C`;
+    if (weatherConditionElement) weatherConditionElement.textContent = weather.condition;
+    if (feelsLikeElement) feelsLikeElement.textContent = `Feels like ${Math.round(current.apparent_temperature)}°C`;
+    if (humidityElement) humidityElement.textContent = `Humidity ${current.relative_humidity_2m}%`;
+    if (locationNameElement) locationNameElement.textContent = `📍 ${locationName}`;
     
     // Update local time
     try {
@@ -567,9 +746,9 @@ async function updateWeatherUI(weatherData, locationName) {
             minute: '2-digit',
             timeZoneName: 'short'
         });
-        document.getElementById('local-time').textContent = `🕐 ${timeString}`;
+        if (localTimeElement) localTimeElement.textContent = `🕐 ${timeString}`;
     } catch (error) {
-        document.getElementById('local-time').textContent = '🕐 Local time';
+        if (localTimeElement) localTimeElement.textContent = '�� Local time';
     }
 }
 
@@ -807,7 +986,7 @@ async function generateOutfitImage() {
         ]);
         
         if (imageResults.length > 0) {
-            displayGeneratedImages(imageResults, imageContainer);
+            displayGeneratedImages(imageResults, imageContainer, appState.outfitPrompt);
         } else {
             // Show error message instead of external service
             imageContainer.innerHTML = `
@@ -928,7 +1107,7 @@ async function generateMultipleImages(prompt) {
 }
 
 // Display generated images in the UI
-function displayGeneratedImages(imageResults, container) {
+function displayGeneratedImages(imageResults, container, outfitPrompt) {
     const imagesHTML = imageResults.map((result, index) => `
         <div class="generated-image-item" style="animation-delay: ${index * 0.2}s">
             <div class="image-wrapper loading">
@@ -951,6 +1130,7 @@ function displayGeneratedImages(imageResults, container) {
             </div>
             <p class="image-description">${result.description}</p>
             <p class="image-usage">${result.usage || 'Free to use'}</p>
+            <button class="like-button" data-image-url="${result.url}" data-prompt="${outfitPrompt}">❤️ Like</button>
         </div>
     `).join('');
     
@@ -969,9 +1149,150 @@ function displayGeneratedImages(imageResults, container) {
             </button>
         </div>
     `;
+
+    // Attach event listeners to like buttons
+    container.querySelectorAll('.like-button').forEach(button => {
+        button.addEventListener('click', async (event) => {
+            const imageUrl = event.target.dataset.imageUrl;
+            const prompt = event.target.dataset.prompt;
+            const likedOutfit = {
+                imageUrl: imageUrl,
+                prompt: prompt,
+                gender: appState.selectedGender,
+                timestamp: Date.now()
+            };
+            try {
+                await saveLikedOutfit(likedOutfit);
+                event.target.textContent = '❤️ Liked!';
+                event.target.disabled = true;
+                // displayLikedOutfits(); // Refresh liked outfits display - removed as liked images are on a separate page
+            } catch (error) {
+                console.error('Error liking image:', error);
+                alert('Failed to save liked image. Please try again.');
+            }
+        });
+    });
 }
 
+// Function to display generated images
+async function displayGeneratedImage(imageUrl, prompt) {
+    const aiGeneratedImage = document.getElementById('ai-generated-image');
+    const imagePromptDisplay = document.getElementById('image-prompt-display');
+    const imageDisplay = document.getElementById('image-display');
+    const imageActions = document.querySelector('.image-actions'); // Use querySelector for class
 
+    console.log('DEBUG displayGeneratedImage: aiGeneratedImage', aiGeneratedImage);
+    console.log('DEBUG displayGeneratedImage: imagePromptDisplay', imagePromptDisplay);
+    console.log('DEBUG displayGeneratedImage: imageDisplay', imageDisplay);
+    console.log('DEBUG displayGeneratedImage: imageActions', imageActions);
+
+    if (aiGeneratedImage) {
+        aiGeneratedImage.src = imageUrl;
+        aiGeneratedImage.classList.remove('hidden');
+    }
+    if (imagePromptDisplay) {
+        imagePromptDisplay.textContent = prompt;
+        imagePromptDisplay.classList.remove('hidden');
+    }
+    if (imageDisplay) {
+        imageDisplay.classList.remove('hidden');
+    }
+    if (imageActions) {
+        imageActions.classList.remove('hidden'); // Ensure buttons are visible
+    }
+}
+
+// Function to display liked images
+async function displayLikedOutfits() {
+    const likedImagesGrid = document.getElementById('liked-images-grid');
+    const noLikedImagesMessage = document.getElementById('no-liked-images');
+    const likedImagesSection = document.getElementById('liked-images-section');
+
+    console.log('DEBUG displayLikedOutfits: Checking elements...');
+    console.log('DEBUG displayLikedOutfits: document.readyState', document.readyState);
+    console.log('DEBUG displayLikedOutfits: likedImagesGrid', likedImagesGrid);
+    console.log('DEBUG displayLikedOutfits: noLikedImagesMessage', noLikedImagesMessage);
+    console.log('DEBUG displayLikedOutfits: likedImagesSection', likedImagesSection);
+    console.log('DEBUG displayLikedOutfits: body innerHTML snippet', document.body.innerHTML.substring(document.body.innerHTML.indexOf('<section id="liked-images-section"'), document.body.innerHTML.indexOf('</section>') + 10));
+
+    if (!likedImagesGrid || !noLikedImagesMessage || !likedImagesSection) {
+        console.error('Required elements for liked images display not found.');
+        return;
+    }
+
+    try {
+        const likedOutfits = await getLikedOutfits();
+
+        if (likedOutfits.length === 0) {
+            likedImagesGrid.innerHTML = ''; // Clear grid
+            noLikedImagesMessage.style.display = 'block'; // Show message
+            likedImagesSection.classList.add('hidden'); // Hide section if no images
+            return;
+        }
+
+        // Sort by most recent
+        likedOutfits.sort((a, b) => b.timestamp - a.timestamp);
+
+        const likedImagesHTML = likedOutfits.map(outfit => `
+            <div class="liked-image-item" data-id="${outfit.id}">
+                <img src="${outfit.imageUrl}" alt="${outfit.prompt}" class="liked-image">
+                <div class="liked-image-overlay">
+                    <p class="liked-image-prompt">${outfit.prompt}</p>
+                    <button class="unlike-button" data-id="${outfit.id}">🗑️ Unlike</button>
+                </div>
+            </div>
+        `).join('');
+
+        likedImagesGrid.innerHTML = likedImagesHTML;
+        noLikedImagesMessage.style.display = 'none'; // Hide message
+        likedImagesSection.classList.remove('hidden'); // Show section
+
+        // Attach event listeners to unlike buttons
+        likedImagesGrid.querySelectorAll('.unlike-button').forEach(button => {
+            button.addEventListener('click', async (event) => {
+                const outfitId = event.target.dataset.id;
+                const likedImageItem = event.target.closest('.liked-image-item'); // Get the parent item
+                try {
+                    await deleteLikedOutfit(outfitId);
+                    if (likedImageItem) {
+                        likedImageItem.remove(); // Immediately remove from DOM
+                        console.log('DEBUG: Successfully removed liked image item from DOM.', outfitId);
+                    }
+                    // After removing, re-check if there are any liked outfits left to update the empty message
+                    const remainingOutfits = await getLikedOutfits();
+                    if (remainingOutfits.length === 0) {
+                        if (noLikedImagesMessage) {
+                            noLikedImagesMessage.style.display = 'block';
+                        }
+                        if (likedImagesGrid) {
+                            likedImagesGrid.innerHTML = ''; // Ensure grid is empty
+                        }
+                        if (likedImagesSection) {
+                            likedImagesSection.classList.add('hidden');
+                        }
+                    }
+
+                } catch (error) {
+                    console.error('Error unliking image:', error);
+                    alert('Failed to remove liked image. Please try again.');
+                }
+            });
+        });
+
+    } catch (error) {
+        console.error('Error displaying liked outfits:', error);
+        // Safely try to update if elements exist for error message
+        if (likedImagesGrid) {
+            likedImagesGrid.innerHTML = '<p class="error-message">Failed to load liked images.</p>';
+        }
+        if (noLikedImagesMessage) {
+            noLikedImagesMessage.style.display = 'none';
+        }
+        if (likedImagesSection) {
+            likedImagesSection.classList.remove('hidden');
+        }
+    }
+}
 
 // Show image generation error
 function showImageGenerationError(container) {
@@ -988,8 +1309,6 @@ function showImageGenerationError(container) {
     `;
 }
 
-
-
 // Copy prompt to clipboard
 function copyPromptToClipboard() {
     navigator.clipboard.writeText(appState.outfitPrompt).then(() => {
@@ -1005,19 +1324,48 @@ function copyPromptToClipboard() {
 
 // Loading state management
 function showLoadingState() {
-    document.getElementById('loading-section').classList.remove('hidden');
-    document.getElementById('weather-section').classList.add('hidden');
-    document.getElementById('outfit-section').classList.add('hidden');
-    document.getElementById('error-section').classList.add('hidden');
+    const loadingSection = document.getElementById('loading-section');
+    const weatherSection = document.getElementById('weather-section');
+    const outfitSection = document.getElementById('outfit-section');
+    const errorSection = document.getElementById('error-section');
+
+    console.log('DEBUG showLoadingState: loadingSection', loadingSection);
+    console.log('DEBUG showLoadingState: weatherSection', weatherSection);
+    console.log('DEBUG showLoadingState: outfitSection', outfitSection);
+    console.log('DEBUG showLoadingState: errorSection', errorSection);
+
+    if (loadingSection) loadingSection.classList.remove('hidden');
+    if (weatherSection) weatherSection.classList.add('hidden');
+    if (outfitSection) outfitSection.classList.add('hidden');
+    if (errorSection) errorSection.classList.add('hidden');
 }
 
 function hideLoadingState() {
-    document.getElementById('loading-section').classList.add('hidden');
+    const loadingSection = document.getElementById('loading-section');
+    const weatherSection = document.getElementById('weather-section');
+    const outfitSection = document.getElementById('outfit-section');
+    const errorSection = document.getElementById('error-section');
+
+    console.log('DEBUG hideLoadingState: loadingSection', loadingSection);
+    console.log('DEBUG hideLoadingState: weatherSection', weatherSection);
+    console.log('DEBUG hideLoadingState: outfitSection', outfitSection);
+    console.log('DEBUG hideLoadingState: errorSection', errorSection);
+
+    if (loadingSection) loadingSection.classList.add('hidden');
+    if (weatherSection) weatherSection.classList.add('hidden');
+    if (outfitSection) outfitSection.classList.add('hidden');
+    if (errorSection) errorSection.classList.add('hidden');
 }
 
 function showMainContent() {
-    document.getElementById('weather-section').classList.remove('hidden');
-    document.getElementById('outfit-section').classList.remove('hidden');
+    const weatherSection = document.getElementById('weather-section');
+    const outfitSection = document.getElementById('outfit-section');
+
+    console.log('DEBUG showMainContent: weatherSection', weatherSection);
+    console.log('DEBUG showMainContent: outfitSection', outfitSection);
+
+    if (weatherSection) weatherSection.classList.remove('hidden');
+    if (outfitSection) outfitSection.classList.remove('hidden');
 }
 
 function updateLoadingStep(stepName, status) {
@@ -1033,8 +1381,15 @@ function handleAppError(error) {
     console.error('❌ Application error:', error);
     
     hideLoadingState();
-    document.getElementById('error-message').textContent = error.message || 'An unexpected error occurred. Please refresh the page and try again.';
-    document.getElementById('error-section').classList.remove('hidden');
+    const errorMessageElement = document.getElementById('error-message');
+    const errorSectionElement = document.getElementById('error-section');
+
+    if (errorMessageElement) {
+        errorMessageElement.textContent = error.message || 'An unexpected error occurred. Please refresh the page and try again.';
+    }
+    if (errorSectionElement) {
+        errorSectionElement.classList.remove('hidden');
+    }
 }
 
 // Global error handler
@@ -1170,5 +1525,11 @@ function updateProductRecommendations(products) {
 window.generateOutfitImage = generateOutfitImage;
 window.selectGender = selectGender;
 window.refreshApp = refreshApp;
+window.displayGeneratedImages = displayGeneratedImages; // Export this as well for testing if needed
+window.displayLikedOutfits = displayLikedOutfits; // Export for external use
+window.saveLikedOutfit = saveLikedOutfit; // Export for external use (e.g., debugging)
+window.getLikedOutfits = getLikedOutfits; // Export for external use (e.g., debugging)
+window.deleteLikedOutfit = deleteLikedOutfit; // Export for external use (e.g., debugging)
+window.initializeLikedOutfitsPage = initializeLikedOutfitsPage; // Export for liked.html
 
 console.log('🌍 AI Outfit for Today - Script loaded successfully'); 

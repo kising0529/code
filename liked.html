@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Liked Outfits - AI Outfit for Today</title>
+    <meta name="description" content="View your saved AI-generated outfit recommendations.">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#764ba2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Liked Outfits">
+    
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body class="liked-page">
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">❤️ Your Liked Outfits</h1>
+            <p class="subtitle">Your personalized collection of AI-recommended fashion</p>
+            <div class="global-indicator">
+                <span class="globe-icon">🌍</span>
+                <span class="global-text">Available worldwide</span>
+            </div>
+            <nav class="main-nav">
+                <a href="/index.html" class="nav-button">🏠 Home</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <!-- Liked Images Section -->
+            <section id="liked-images-section" class="liked-images-section">
+                <div id="liked-images-grid" class="liked-images-grid">
+                    <!-- Liked images will be loaded here by JavaScript -->
+                    <p id="no-liked-images" class="no-images-message">No liked images yet. Like an outfit on the <a href="index.html">Home page</a> to save it here!</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>AI Outfit for Today</h3>
+                    <p>Weather-smart fashion recommendations worldwide</p>
+                </div>
+                <div class="footer-links">
+                    <a href="/index.html">Home</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI Outfit for Today. Available globally. Powered by Open-Meteo API.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js?v=6" defer></script>
+    <script>
+        // This inline script is now minimal and only responsible for initializing
+        // the liked outfits display after DOM is fully loaded.
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DEBUG: DOMContentLoaded fired on liked.html');
+            // Call a function in script.js to handle liked outfits initialization
+            if (typeof initializeLikedOutfitsPage === 'function') {
+                initializeLikedOutfitsPage();
+            } else {
+                console.error('initializeLikedOutfitsPage function not found in script.js');
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -19,6 +19,15 @@
     <meta name="twitter:title" content="AI Outfit for Today">
     <meta name="twitter:description" content="Weather-based AI outfit recommendations">
     
+    <!-- hreflang for SEO and multi-language support -->
+    <link rel="alternate" hreflang="ko" href="https://your-domain.com/?lang=ko">
+    <link rel="alternate" hreflang="en" href="https://your-domain.com/?lang=en">
+    <link rel="alternate" hreflang="ja" href="https://your-domain.com/?lang=ja">
+    <link rel="alternate" hreflang="zh" href="https://your-domain.com/?lang=zh">
+    <link rel="alternate" hreflang="x-default" href="https://your-domain.com/">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://your-domain.com/">
 
     
     <!-- Favicon -->
@@ -44,12 +53,15 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1 class="title">🌤️ AI Outfit for Today</h1>
-            <p class="subtitle">Weather-smart fashion recommendations powered by AI</p>
+            <h1 class="title" data-i18n="header.title">🌤️ AI Outfit for Today</h1>
+            <p class="subtitle" data-i18n="header.subtitle">Weather-smart fashion recommendations powered by AI</p>
             <div class="global-indicator">
                 <span class="globe-icon">🌍</span>
-                <span class="global-text">Available worldwide</span>
+                <span class="global-text" data-i18n="header.globalIndicator">Available worldwide</span>
             </div>
+            <nav class="main-nav">
+                <a href="liked.html" class="nav-button">❤️ Your Liked Outfits</a>
+            </nav>
         </header>
 
 
@@ -65,24 +77,24 @@
                         <span></span>
                     </div>
                 </div>
-                <h2 class="loading-title">Analyzing Your Weather...</h2>
-                <p class="loading-text">Detecting location and gathering weather data</p>
+                <h2 class="loading-title" data-i18n="loading.title">Analyzing Your Weather...</h2>
+                <p class="loading-text" data-i18n="loading.text">Detecting location and gathering weather data</p>
                 <div class="loading-steps">
                     <div class="step" id="step-location">
                         <span class="step-icon">📍</span>
-                        <span class="step-text">Getting your location</span>
+                        <span class="step-text" data-i18n="loading.steps.location">Getting your location</span>
                     </div>
                     <div class="step" id="step-weather">
                         <span class="step-icon">🌡️</span>
-                        <span class="step-text">Fetching weather data</span>
+                        <span class="step-text" data-i18n="loading.steps.weather">Fetching weather data</span>
                     </div>
                     <div class="step" id="step-outfit">
                         <span class="step-icon">👔</span>
-                        <span class="step-text">Generating outfit recommendation</span>
+                        <span class="step-text" data-i18n="loading.steps.outfit">Generating outfit recommendation</span>
                     </div>
                     <div class="step" id="step-image">
                         <span class="step-icon">🎨</span>
-                        <span class="step-text">Preparing AI image generation</span>
+                        <span class="step-text" data-i18n="loading.steps.image">Preparing AI image generation</span>
                     </div>
                 </div>
             </div>
@@ -91,10 +103,10 @@
             <section id="weather-section" class="weather-section hidden">
                 <div class="weather-card">
                     <div class="weather-header">
-                        <h2 class="section-title">Current Weather</h2>
+                        <h2 class="section-title" data-i18n="weather.title">Current Weather</h2>
                         <div class="location-info">
-                            <span id="location-name" class="location-name">📍 Detecting location...</span>
-                            <span id="local-time" class="local-time">🕐 Loading time...</span>
+                            <span id="location-name" class="location-name" data-i18n="weather.locationDetecting">📍 Detecting location...</span>
+                            <span id="local-time" class="local-time" data-i18n="weather.timeLoading">🕐 Loading time...</span>
                         </div>
                     </div>
                     
@@ -120,62 +132,62 @@
             <section id="outfit-section" class="outfit-section hidden">
                 <div class="outfit-card">
                     <div class="outfit-header">
-                        <h2 class="section-title">Perfect Outfit for Today</h2>
+                        <h2 class="section-title" data-i18n="outfit.title">Perfect Outfit for Today</h2>
                         <div class="ai-badge">
                             <span class="ai-icon">🤖</span>
-                            <span>AI Recommended</span>
+                            <span data-i18n="outfit.aiRecommended">AI Recommended</span>
                         </div>
                     </div>
                     
                     <div class="outfit-content">
                         <div class="outfit-description">
-                            <div id="outfit-summary" class="outfit-summary">
+                            <div id="outfit-summary" class="outfit-summary" data-i18n="outfit.analyzing">
                                 Analyzing weather conditions to recommend the perfect outfit...
                             </div>
                             <div id="outfit-details" class="outfit-details">
                                 <div class="detail-item">
                                     <span class="detail-icon">👕</span>
-                                    <span id="clothing-items" class="detail-text">Loading recommendations...</span>
+                                    <span id="clothing-items" class="detail-text" data-i18n="outfit.details.clothing">Loading recommendations...</span>
                                 </div>
                                 <div class="detail-item">
                                     <span class="detail-icon">👟</span>
-                                    <span id="footwear" class="detail-text">Selecting footwear...</span>
+                                    <span id="footwear" class="detail-text" data-i18n="outfit.details.footwear">Selecting footwear...</span>
                                 </div>
                                 <div class="detail-item">
                                     <span class="detail-icon">🎒</span>
-                                    <span id="accessories" class="detail-text">Choosing accessories...</span>
+                                    <span id="accessories" class="detail-text" data-i18n="outfit.details.accessories">Choosing accessories...</span>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="image-generation">
                             <div class="prompt-preview">
-                                <h3 class="prompt-title">AI Image Prompt</h3>
-                                <div id="ai-prompt" class="prompt-text">
+                                <h3 class="prompt-title" data-i18n="outfit.promptTitle">AI Image Prompt</h3>
+                                <div id="ai-prompt" class="prompt-text" data-i18n="outfit.promptGenerating">
                                     Generating detailed outfit description for AI image creation...
                                 </div>
                             </div>
                             
                             <div class="generation-actions">
                                 <div class="gender-selection">
-                                    <h4 class="gender-title">👤 Choose Style</h4>
+                                    <h4 class="gender-title" data-i18n="outfit.genderSelection.title">👤 Choose Style</h4>
                                     <div class="gender-buttons">
                                         <button class="gender-btn active" data-gender="female" onclick="selectGender('female')">
                                             <span class="gender-icon">👩</span>
-                                            <span class="gender-text">Women's Style</span>
+                                            <span class="gender-text" data-i18n="outfit.genderSelection.women">Women's Style</span>
                                         </button>
                                         <button class="gender-btn" data-gender="male" onclick="selectGender('male')">
                                             <span class="gender-icon">👨</span>
-                                            <span class="gender-text">Men's Style</span>
+                                            <span class="gender-text" data-i18n="outfit.genderSelection.men">Men's Style</span>
                                         </button>
                                     </div>
                                 </div>
                                 
                                 <button id="generate-image-btn" class="generate-btn" onclick="generateOutfitImage()">
                                     <span class="btn-icon">🎨</span>
-                                    <span class="btn-text">Generate AI Outfit Image</span>
+                                    <span class="btn-text" data-i18n="outfit.generateButton">Generate AI Outfit Image</span>
                                 </button>
-                                <p class="generation-note">
+                                <p class="generation-note" data-i18n="outfit.generateNote">
                                     AI will create outfit images based on your selected style and current weather
                                 </p>
                                 
@@ -187,13 +199,13 @@
                             
                             <!-- Amazon Product Recommendations -->
                             <div class="product-recommendations">
-                                <h3 class="products-title">🛍️ Get This Look</h3>
-                                <p class="products-subtitle">Shop the recommended items for your perfect weather outfit</p>
+                                <h3 class="products-title" data-i18n="products.title">🛍️ Get This Look</h3>
+                                <p class="products-subtitle" data-i18n="products.subtitle">Shop the recommended items for your perfect weather outfit</p>
                                 <div id="recommended-products" class="products-grid">
                                     <!-- Products will be populated by JavaScript -->
                                 </div>
                                 <p class="affiliate-disclaimer">
-                                    <small>💡 As an Amazon Associate, we earn from qualifying purchases. Prices may vary.</small>
+                                    <small data-i18n="products.disclaimer">💡 As an Amazon Associate, we earn from qualifying purchases. Prices may vary.</small>
                                 </p>
                             </div>
                         </div>
@@ -205,27 +217,27 @@
 
             <!-- How It Works Section -->
             <section class="info-section">
-                <h2 class="section-title">How It Works</h2>
+                <h2 class="section-title" data-i18n="howItWorks.title">How It Works</h2>
                 <div class="info-grid">
                     <div class="info-item">
                         <div class="info-icon">🌍</div>
-                        <h3>Auto Location</h3>
-                        <p>We detect your location automatically to get accurate local weather data</p>
+                        <h3 data-i18n="howItWorks.steps.location.title">Auto Location</h3>
+                        <p data-i18n="howItWorks.steps.location.description">We detect your location automatically to get accurate local weather data</p>
                     </div>
                     <div class="info-item">
                         <div class="info-icon">🌡️</div>
-                        <h3>Weather Analysis</h3>
-                        <p>Real-time weather conditions including temperature, humidity, and conditions</p>
+                        <h3 data-i18n="howItWorks.steps.weather.title">Weather Analysis</h3>
+                        <p data-i18n="howItWorks.steps.weather.description">Real-time weather conditions including temperature, humidity, and conditions</p>
                     </div>
                     <div class="info-item">
                         <div class="info-icon">🤖</div>
-                        <h3>AI Recommendation</h3>
-                        <p>Smart algorithms suggest the perfect outfit based on current weather</p>
+                        <h3 data-i18n="howItWorks.steps.ai.title">AI Recommendation</h3>
+                        <p data-i18n="howItWorks.steps.ai.description">Smart algorithms suggest the perfect outfit based on current weather</p>
                     </div>
                     <div class="info-item">
                         <div class="info-icon">🎨</div>
-                        <h3>Visual Generation</h3>
-                        <p>Generate stunning AI images of your recommended outfit instantly</p>
+                        <h3 data-i18n="howItWorks.steps.visual.title">Visual Generation</h3>
+                        <p data-i18n="howItWorks.steps.visual.description">Generate stunning AI images of your recommended outfit instantly</p>
                     </div>
                 </div>
             </section>
@@ -268,7 +280,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=5"></script>
     <script>
         // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {

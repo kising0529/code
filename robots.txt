@@ -1,0 +1,60 @@
+# Robots.txt for AI Outfit for Today
+# Weather-based AI fashion recommendation service
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Block access to sensitive or unnecessary files
+Disallow: /sw.js
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /manifest.json
+
+# Allow access to important pages
+Allow: /index.html
+Allow: /privacy.html
+Allow: /terms.html
+
+# Block access to potential admin or config directories
+Disallow: /admin/
+Disallow: /config/
+Disallow: /api/
+Disallow: /temp/
+Disallow: /cache/
+
+# Block access to common file types that shouldn't be indexed
+Disallow: *.log
+Disallow: *.tmp
+Disallow: *.bak
+
+# Sitemap location (when created)
+# Sitemap: https://your-domain.com/sitemap.xml
+
+# Cache and performance optimization
+# Allow caching of static resources
+Allow: /style.css
+Allow: /script.js
+
+# SEO optimization notes:
+# - This robots.txt allows major search engines to crawl the site
+# - Crawl delays are set to be respectful of server resources
+# - Important pages are explicitly allowed
+# - Sensitive files and directories are blocked
+# - Update the sitemap URL when you deploy the site
+
+# Last updated: 2024
+# Contact: webmaster@your-domain.com 

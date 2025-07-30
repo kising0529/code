@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ai-outfit-v6';
+const CACHE_NAME = 'ai-outfit-v8';
 const urlsToCache = [
   '/',
   '/index.html',
