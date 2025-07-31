@@ -12,6 +12,7 @@ let appState = {
     currentLocation: null,
     outfitPrompt: '',
     selectedGender: 'female', // Default to female
+    selectedStyle: 'casual', // Default to casual
     recommendedProducts: [],
     isLoading: false,
     steps: {
@@ -338,7 +339,7 @@ async function initializeApp() {
             
             // Step 3: Generate outfit recommendation
             updateLoadingStep('outfit', 'active');
-            const outfitData = generateOutfitRecommendation(weatherData, appState.selectedGender);
+            const outfitData = generateOutfitRecommendation(weatherData, appState.selectedGender, appState.selectedStyle);
             appState.outfitPrompt = outfitData.prompt;
             appState.recommendedProducts = outfitData.products;
             updateLoadingStep('outfit', 'completed');
@@ -511,7 +512,7 @@ async function getLocationName(latitude, longitude) {
 }
 
 // Generate comprehensive outfit recommendation based on gender
-function generateOutfitRecommendation(weatherData, gender = 'female') {
+function generateOutfitRecommendation(weatherData, gender = appState.selectedGender, style = appState.selectedStyle) {
     const current = weatherData.current;
     const temp = Math.round(current.temperature_2m);
     const feelsLike = Math.round(current.apparent_temperature);
@@ -521,111 +522,255 @@ function generateOutfitRecommendation(weatherData, gender = 'female') {
     
     const weather = WEATHER_CODES[weatherCode] || WEATHER_CODES[1];
     
-    console.log('👔 Generating outfit for:', { temp, feelsLike, humidity, weatherCode, weather: weather.condition });
+    console.log('👔 Generating outfit for:', { temp, feelsLike, humidity, weatherCode, weather: weather.condition, gender, style });
     
     // Determine base clothing based on temperature
     let clothing = [];
     let footwear = [];
     let accessories = [];
-    let style = 'casual';
+    let outfitStyleDescription = '';
     let colors = [];
     
-    // Temperature-based clothing selection with gender preferences
+    // Temperature-based clothing selection with gender and style preferences
     if (temp <= -10) {
         if (gender === 'female') {
             clothing = ['heavy winter coat', 'thermal leggings', 'wool sweater', 'warm scarf', 'winter hat', 'insulated gloves'];
             footwear = ['insulated winter boots', 'warm wool socks'];
-            style = 'cozy arctic winter';
+            outfitStyleDescription = 'cozy arctic winter';
             colors = ['deep burgundy', 'charcoal gray', 'winter white'];
         } else {
             clothing = ['heavy winter parka', 'thermal underwear', 'wool pullover', 'insulated pants', 'warm scarf', 'beanie', 'winter gloves'];
             footwear = ['insulated winter boots', 'thick wool socks'];
-            style = 'rugged arctic winter';
+            outfitStyleDescription = 'rugged arctic winter';
             colors = ['dark navy', 'charcoal black', 'forest green'];
         }
     } else if (temp <= 0) {
         if (gender === 'female') {
             clothing = ['stylish winter coat', 'warm sweater', 'skinny jeans or leggings', 'fashionable scarf', 'cute beanie'];
             footwear = ['fashionable winter boots', 'warm socks'];
-            style = 'chic winter';
+            outfitStyleDescription = 'chic winter';
             colors = ['camel', 'burgundy', 'cream white'];
         } else {
             clothing = ['winter jacket', 'warm hoodie or sweater', 'jeans', 'warm scarf', 'knit beanie'];
             footwear = ['winter boots', 'thick socks'];
-            style = 'casual winter';
+            outfitStyleDescription = 'casual winter';
             colors = ['navy blue', 'forest green', 'charcoal'];
         }
     } else if (temp <= 10) {
         if (gender === 'female') {
-            clothing = ['trench coat or stylish jacket', 'cozy sweater', 'jeans or cute pants', 'light scarf'];
-            footwear = ['ankle boots or sneakers'];
-            style = 'elegant autumn';
-            colors = ['camel', 'rust orange', 'olive green'];
+            if (style === 'business') {
+                clothing = ['wool blazer', 'turtleneck sweater', 'tailored trousers', 'elegant scarf'];
+                footwear = ['leather ankle boots'];
+                outfitStyleDescription = 'business formal autumn';
+                colors = ['charcoal', 'navy', 'dark green'];
+            } else if (style === 'date') {
+                clothing = ['stylish trench coat', 'midi dress', 'fashionable scarf'];
+                footwear = ['heeled boots'];
+                outfitStyleDescription = 'romantic autumn date';
+                colors = ['wine red', 'deep purple', 'black'];
+            } else { // Casual
+                clothing = ['trench coat or stylish jacket', 'cozy sweater', 'jeans or cute pants', 'light scarf'];
+                footwear = ['ankle boots or sneakers'];
+                outfitStyleDescription = 'elegant autumn';
+                colors = ['camel', 'rust orange', 'olive green'];
+            }
         } else {
-            clothing = ['casual jacket or hoodie', 'long-sleeve shirt', 'chinos or jeans', 'light scarf'];
-            footwear = ['casual boots or sneakers'];
-            style = 'relaxed autumn';
-            colors = ['earth tones', 'burgundy', 'navy'];
+            if (style === 'business') {
+                clothing = ['wool blend overcoat', 'dress shirt', 'dress pants', 'tie'];
+                footwear = ['leather dress shoes'];
+                outfitStyleDescription = 'business professional autumn';
+                colors = ['dark grey', 'navy blue', 'black'];
+            } else if (style === 'date') {
+                clothing = ['smart casual blazer', 'collared shirt', 'dark jeans or chinos'];
+                footwear = ['leather boots or loafers'];
+                outfitStyleDescription = 'sophisticated date night';
+                colors = ['deep blue', 'burgundy', 'camel'];
+            } else { // Casual
+                clothing = ['casual jacket or hoodie', 'long-sleeve shirt', 'chinos or jeans', 'light scarf'];
+                footwear = ['casual boots or sneakers'];
+                outfitStyleDescription = 'relaxed autumn';
+                colors = ['earth tones', 'burgundy', 'navy'];
+            }
         }
     } else if (temp <= 15) {
         if (gender === 'female') {
-            clothing = ['light cardigan or blazer', 'blouse or long-sleeve top', 'jeans or stylish pants'];
-            footwear = ['flats or low heels', 'comfortable sneakers'];
-            style = 'spring chic';
-            colors = ['soft pink', 'light blue', 'sage green'];
+            if (style === 'business') {
+                clothing = ['blazer', 'silk blouse', 'pencil skirt or tailored pants'];
+                footwear = ['low heels or elegant flats'];
+                outfitStyleDescription = 'business chic spring';
+                colors = ['light grey', 'beige', 'pastel blue'];
+            } else if (style === 'date') {
+                clothing = ['lightweight knit top', 'A-line skirt or flowy pants', 'denim jacket'];
+                footwear = ['stylish sandals or wedges'];
+                outfitStyleDescription = 'casual date spring';
+                colors = ['blush pink', 'mint green', 'cream'];
+            } else { // Casual
+                clothing = ['light cardigan or blazer', 'blouse or long-sleeve top', 'jeans or stylish pants'];
+                footwear = ['flats or low heels', 'comfortable sneakers'];
+                outfitStyleDescription = 'spring chic';
+                colors = ['soft pink', 'light blue', 'sage green'];
+            }
         } else {
-            clothing = ['light jacket or cardigan', 'button-down shirt', 'chinos or jeans'];
-            footwear = ['loafers or sneakers'];
-            style = 'smart casual spring';
-            colors = ['light gray', 'navy', 'khaki'];
+            if (style === 'business') {
+                clothing = ['sport coat', 'button-down shirt', 'dress chinos', 'leather belt'];
+                footwear = ['derby shoes or loafers'];
+                outfitStyleDescription = 'smart business spring';
+                colors = ['khaki', 'light blue', 'white'];
+            } else if (style === 'date') {
+                clothing = ['light knit sweater', 'dark wash jeans', 'casual blazer'];
+                footwear = ['suede loafers or neat sneakers'];
+                outfitStyleDescription = 'relaxed date';
+                colors = ['navy', 'grey', 'olive'];
+            } else { // Casual
+                clothing = ['light jacket or cardigan', 'button-down shirt', 'chinos or jeans'];
+                footwear = ['loafers or sneakers'];
+                outfitStyleDescription = 'smart casual spring';
+                colors = ['light gray', 'navy', 'khaki'];
+            }
         }
     } else if (temp <= 20) {
         if (gender === 'female') {
-            clothing = ['light sweater or blouse', 'comfortable jeans or pants', 'light cardigan'];
-            footwear = ['comfortable flats or sneakers'];
-            style = 'casual spring';
-            colors = ['coral', 'mint green', 'soft yellow'];
+            if (style === 'business') {
+                clothing = ['lightweight blazer', 'blouse', 'culottes or wide-leg pants'];
+                footwear = ['block heels or elegant flats'];
+                outfitStyleDescription = 'professional summer';
+                colors = ['navy', 'white', 'pastel'];
+            } else if (style === 'date') {
+                clothing = ['floral midi dress', 'light cardigan'];
+                footwear = ['strappy sandals or espadrilles'];
+                outfitStyleDescription = 'sweet summer date';
+                colors = ['peach', 'lavender', 'mint'];
+            } else { // Casual
+                clothing = ['light sweater or blouse', 'comfortable jeans or pants', 'light cardigan'];
+                footwear = ['comfortable flats or sneakers'];
+                outfitStyleDescription = 'casual spring';
+                colors = ['coral', 'mint green', 'soft yellow'];
+            }
         } else {
-            clothing = ['polo shirt or casual shirt', 'chinos or jeans'];
-            footwear = ['casual shoes or sneakers'];
-            style = 'relaxed spring';
-            colors = ['light blue', 'khaki', 'white'];
+            if (style === 'business') {
+                clothing = ['linen blend blazer', 'light dress shirt', 'lightweight trousers'];
+                footwear = ['polished loafers'];
+                outfitStyleDescription = 'summer business casual';
+                colors = ['light blue', 'tan', 'white'];
+            } else if (style === 'date') {
+                clothing = ['short-sleeve button-down', 'chinos', 'casual jacket'];
+                footwear = ['clean white sneakers or driving mocs'];
+                outfitStyleDescription = 'evening casual date';
+                colors = ['olive green', 'navy', 'beige'];
+            } else { // Casual
+                clothing = ['polo shirt or casual shirt', 'chinos or jeans'];
+                footwear = ['casual shoes or sneakers'];
+                outfitStyleDescription = 'relaxed spring';
+                colors = ['light blue', 'khaki', 'white'];
+            }
         }
     } else if (temp <= 25) {
         if (gender === 'female') {
-            clothing = ['cute t-shirt or blouse', 'jeans or stylish pants', 'light cardigan'];
-            footwear = ['sandals or comfortable sneakers'];
-            style = 'fresh casual';
-            colors = ['bright coral', 'turquoise', 'sunny yellow'];
+            if (style === 'business') {
+                clothing = ['tailored jumpsuit or dress', 'light scarf'];
+                footwear = ['comfortable pumps'];
+                outfitStyleDescription = 'chic office summer';
+                colors = ['cream', 'navy', 'dusty rose'];
+            } else if (style === 'date') {
+                clothing = ['maxi dress', 'denim jacket'];
+                footwear = ['flat sandals'];
+                outfitStyleDescription = 'relaxed summer date';
+                colors = ['bright florals', 'aqua', 'lemon'];
+            } else { // Casual
+                clothing = ['cute t-shirt or blouse', 'jeans or stylish pants', 'light cardigan'];
+                footwear = ['sandals or comfortable sneakers'];
+                outfitStyleDescription = 'fresh casual';
+                colors = ['bright coral', 'turquoise', 'sunny yellow'];
+            }
         } else {
-            clothing = ['casual t-shirt or polo', 'shorts or light pants'];
-            footwear = ['sneakers or casual shoes'];
-            style = 'comfortable casual';
-            colors = ['navy', 'khaki', 'white'];
+            if (style === 'business') {
+                clothing = ['short-sleeve linen shirt', 'light dress pants'];
+                footwear = ['breathable loafers'];
+                outfitStyleDescription = 'summer corporate';
+                colors = ['white', 'light grey', 'pale blue'];
+            } else if (style === 'date') {
+                clothing = ['stylish polo', 'linen shorts'];
+                footwear = ['espadrille sneakers'];
+                outfitStyleDescription = 'beach date casual';
+                colors = ['pastel shades', 'coral', 'sand'];
+            } else { // Casual
+                clothing = ['casual t-shirt or polo', 'shorts or light pants'];
+                footwear = ['sneakers or casual shoes'];
+                outfitStyleDescription = 'comfortable casual';
+                colors = ['navy', 'khaki', 'white'];
+            }
         }
     } else if (temp <= 30) {
         if (gender === 'female') {
-            clothing = ['tank top or summer blouse', 'shorts or summer dress', 'light cardigan'];
-            footwear = ['sandals or summer sneakers'];
-            style = 'breezy summer';
-            colors = ['bright summer colors', 'coral pink', 'turquoise'];
+            if (style === 'business') {
+                clothing = ['lightweight tailored dress', 'minimalist jewelry'];
+                footwear = ['open-toe block heels'];
+                outfitStyleDescription = 'elegant summer office';
+                colors = ['crisp white', 'powder blue', 'cream'];
+            } else if (style === 'date') {
+                clothing = ['flowy sundress', 'strappy sandals'];
+                footwear = ['wedge sandals'];
+                outfitStyleDescription = 'romantic summer evening';
+                colors = ['vibrant floral', 'ocean blue', 'sunset orange'];
+            } else { // Casual
+                clothing = ['tank top or summer blouse', 'shorts or summer dress', 'light cardigan'];
+                footwear = ['sandals or summer sneakers'];
+                outfitStyleDescription = 'breezy summer';
+                colors = ['bright summer colors', 'coral pink', 'turquoise'];
+            }
         } else {
-            clothing = ['breathable t-shirt', 'shorts', 'light shirt'];
-            footwear = ['sneakers or boat shoes'];
-            style = 'summer casual';
-            colors = ['light blue', 'white', 'khaki'];
+            if (style === 'business') {
+                clothing = ['light linen shirt', 'tailored shorts', 'loafers'];
+                footwear = ['no-show socks'];
+                outfitStyleDescription = 'smart summer business';
+                colors = ['light pastels', 'beige', 'blue'];
+            } else if (style === 'date') {
+                clothing = ['short sleeve button-up', 'chino shorts', 'casual loafers'];
+                footwear = ['leather sandals'];
+                outfitStyleDescription = 'resort casual date';
+                colors = ['tropical prints', 'teal', 'white'];
+            } else { // Casual
+                clothing = ['breathable t-shirt', 'shorts', 'light shirt'];
+                footwear = ['sneakers or boat shoes'];
+                outfitStyleDescription = 'summer casual';
+                colors = ['light blue', 'white', 'khaki'];
+            }
         }
-    } else {
+    } else { // temp > 30
         if (gender === 'female') {
-            clothing = ['breathable tank top or summer top', 'shorts or light summer dress', 'sun hat'];
-            footwear = ['comfortable sandals'];
-            style = 'hot summer chic';
-            colors = ['white', 'light pastels', 'bright coral'];
+            if (style === 'business') {
+                clothing = ['lightweight cotton dress', 'open-knit cardigan'];
+                footwear = ['comfortable and stylish flat sandals'];
+                outfitStyleDescription = 'heatwave office chic';
+                colors = ['white', 'beige', 'light blue'];
+            } else if (style === 'date') {
+                clothing = ['flowy crop top', 'high-waisted linen shorts', 'statement earrings'];
+                footwear = ['minimalist sandals'];
+                outfitStyleDescription = 'hot weather casual date';
+                colors = ['bold patterns', 'neon accents', 'silver'];
+            } else { // Casual
+                clothing = ['breathable tank top or summer top', 'shorts or light summer dress', 'sun hat'];
+                footwear = ['comfortable sandals'];
+                outfitStyleDescription = 'hot summer chic';
+                colors = ['white', 'light pastels', 'bright coral'];
+            }
         } else {
-            clothing = ['lightweight t-shirt', 'shorts', 'sun hat or cap'];
-            footwear = ['breathable sneakers or sandals'];
-            style = 'hot summer casual';
-            colors = ['white', 'light gray', 'navy'];
+            if (style === 'business') {
+                clothing = ['breathable polo shirt', 'lightweight chino shorts'];
+                footwear = ['canvas espadrilles'];
+                outfitStyleDescription = 'tropical business casual';
+                colors = ['khaki', 'navy', 'white'];
+            } else if (style === 'date') {
+                clothing = ['graphic tee', 'swim shorts', 'flip-flops'];
+                footwear = ['water sandals'];
+                outfitStyleDescription = 'poolside date casual';
+                colors = ['bright and bold', 'black', 'grey'];
+            } else { // Casual
+                clothing = ['lightweight t-shirt', 'shorts', 'sun hat or cap'];
+                footwear = ['breathable sneakers or sandals'];
+                outfitStyleDescription = 'hot summer casual';
+                colors = ['white', 'light gray', 'navy'];
+            }
         }
     }
     
@@ -654,7 +799,7 @@ function generateOutfitRecommendation(weatherData, gender = 'female') {
     // Humidity adjustments
     if (humidity > 80) {
         clothing = clothing.map(item => item.includes('breathable') ? item : `breathable ${item}`);
-        style = `lightweight ${style}`;
+        outfitStyleDescription = `lightweight ${outfitStyleDescription}`;
     }
     
     // Sunny weather accessories
@@ -673,11 +818,12 @@ function generateOutfitRecommendation(weatherData, gender = 'female') {
     
     const promptParts = [
         `A ${selectedPerson} modeling and wearing`,
-        clothing.slice(0, 4).join(', '), // Limit to avoid overly long prompts
-        footwear.join(' and '),
+        clothing.length > 0 ? clothing.slice(0, 4).join(', ') : '', // Check if clothing array is not empty
+        footwear.length > 0 ? footwear.join(' and ') : '',         // Check if footwear array is not empty
         accessories.length > 0 ? `with ${accessories.slice(0, 3).join(', ')}` : '',
         `in ${selectedColor}`,
-        `${style} fashion outfit`,
+        `${outfitStyleDescription} fashion outfit`,
+        `for a ${style} occasion`,
         `posing for a fashion photoshoot`,
         `outdoors in ${weather.condition.toLowerCase()} weather`,
         `${temp}°C temperature`,
@@ -694,7 +840,7 @@ function generateOutfitRecommendation(weatherData, gender = 'female') {
     const aiPrompt = promptParts.join(', ');
     
     // Generate human-readable summary
-    const summary = `Perfect for ${temp}°C ${weather.condition.toLowerCase()} weather. ${
+    const summary = `Perfect for ${temp}°C ${weather.condition.toLowerCase()} weather and a ${style} occasion. ${
         temp <= 10 ? 'Layer up to stay warm and cozy.' :
         temp <= 20 ? 'Light layers for comfortable temperature control.' :
         temp <= 30 ? 'Breathable fabrics to stay cool and comfortable.' :
@@ -702,7 +848,7 @@ function generateOutfitRecommendation(weatherData, gender = 'female') {
     }`;
     
     // Generate Amazon product recommendations
-    const recommendedProducts = generateProductRecommendations(temp, weatherCode, gender);
+    const recommendedProducts = generateProductRecommendations(temp, weatherCode, gender, style);
     
     return {
         prompt: aiPrompt,
@@ -710,7 +856,7 @@ function generateOutfitRecommendation(weatherData, gender = 'female') {
         clothing: clothing.slice(0, 3).join(', '),
         footwear: footwear[0] || 'comfortable shoes',
         accessories: accessories.length > 0 ? accessories.slice(0, 2).join(', ') : 'none needed',
-        style: style,
+        style: outfitStyleDescription,
         temperature: temp,
         weatherCondition: weather.condition,
         products: recommendedProducts
@@ -753,8 +899,8 @@ async function updateWeatherUI(weatherData, locationName) {
 }
 
 // Generate Amazon product recommendations based on weather
-function generateProductRecommendations(temp, weatherCode, gender) {
-    console.log('🛍️ Generating products for:', { temp, weatherCode, gender });
+function generateProductRecommendations(temp, weatherCode, gender, style) {
+    console.log('🛍️ Generating products for:', { temp, weatherCode, gender, style });
     
     const products = [];
     const genderProducts = AMAZON_PRODUCTS[gender];
@@ -843,6 +989,13 @@ async function generateOutfitImage() {
         return;
     }
     
+    // Display the prompt text before generating the image
+    const aiPromptElement = document.getElementById('ai-prompt');
+    if (aiPromptElement) {
+        aiPromptElement.textContent = appState.outfitPrompt;
+        aiPromptElement.classList.remove('hidden');
+    }
+
     console.log('🎨 Generating AI image with prompt:', appState.outfitPrompt);
     
     // Show loading state
@@ -972,7 +1125,7 @@ async function generateOutfitImage() {
         };
         
         // Start image generation and progressive messages
-        const imagePromise = generateMultipleImages(appState.outfitPrompt);
+        const imagePromise = generateMultipleImages(appState.outfitPrompt, appState.selectedGender);
         
         // Update messages every 500ms
         for (let i = 0; i < loadingMessages.length; i++) {
@@ -1027,7 +1180,7 @@ async function generateOutfitImage() {
 }
 
 // Generate images using multiple free AI services focused on people
-async function generateMultipleImages(prompt) {
+async function generateMultipleImages(prompt, gender) {
     const imageResults = [];
     
     try {
@@ -1036,6 +1189,9 @@ async function generateMultipleImages(prompt) {
         const randomSeed = Math.floor(Math.random() * 1000000);
         const sessionId = Math.random().toString(36).substring(7);
         
+        // Gender-specific subject description
+        const genderSubject = gender === 'female' ? 'a beautiful female model' : 'a handsome male model';
+
         // Multiple style variations for more diversity
         const styleVariations = [
             'professional fashion model',
@@ -1045,7 +1201,13 @@ async function generateMultipleImages(prompt) {
             'trendy fashion influencer',
             'sophisticated dresser',
             'chic fashion enthusiast',
-            'modern style icon'
+            'modern style icon',
+            'runway model', /* New */
+            'magazine cover model', /* New */
+            'street style icon', /* New */
+            'high fashion editorial', /* New */
+            'minimalist aesthetic', /* New */
+            'avant-garde fashion' /* New */
         ];
         
         const backgroundVariations = [
@@ -1054,7 +1216,12 @@ async function generateMultipleImages(prompt) {
             'outdoor natural lighting',
             'minimalist backdrop',
             'city environment',
-            'contemporary setting'
+            'contemporary setting',
+            'dramatic cityscape', /* New */
+            'serene nature backdrop', /* New */
+            'futuristic architecture', /* New */
+            'vintage industrial space', /* New */
+            'luxury interior' /* New */
         ];
         
         const poseVariations = [
@@ -1063,17 +1230,22 @@ async function generateMultipleImages(prompt) {
             'elegant posture',
             'dynamic pose',
             'relaxed position',
-            'fashion pose'
+            'fashion pose',
+            'walking pose', /* New */
+            'sitting pose', /* New */
+            'candid shot', /* New */
+            'profile view', /* New */
+            'full body view' /* New */
         ];
         
         const selectedStyle = styleVariations[Math.floor(Math.random() * styleVariations.length)];
         const selectedBackground = backgroundVariations[Math.floor(Math.random() * backgroundVariations.length)];
         const selectedPose = poseVariations[Math.floor(Math.random() * poseVariations.length)];
         
-        const enhancedPrompt = `${selectedStyle} ${prompt}, ${selectedPose}, ${selectedBackground}, no objects only, no clothing items only, must show person wearing clothes, human figure required, fashion model, person visible, realistic photography, high quality, detailed`;
+        const enhancedPrompt = `${genderSubject}, ${selectedStyle} ${prompt}, ${selectedPose}, ${selectedBackground}, no objects only, no clothing items only, must show person wearing clothes, human figure required, fashion model, person visible, realistic photography, high quality, detailed`;
         
         // Method 1: Use Pollinations AI with Flux model
-        const pollinationsUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(enhancedPrompt)}?width=512&height=768&model=flux&enhance=true&nologo=true&seed=${randomSeed}&timestamp=${timestamp}&session=${sessionId}`;
+        const pollinationsUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(enhancedPrompt)}?width=512&height=768&model=flux&enhance=true&nologo=true&seed=${Date.now()}&timestamp=${timestamp}&session=${sessionId}`;
         imageResults.push({
             url: pollinationsUrl,
             service: 'Pollinations AI (Flux)',
@@ -1087,8 +1259,8 @@ async function generateMultipleImages(prompt) {
         const altBackground = backgroundVariations[Math.floor(Math.random() * backgroundVariations.length)];
         const altPose = poseVariations[Math.floor(Math.random() * poseVariations.length)];
         
-        const altPrompt = `${altStyle} wearing ${prompt}, ${altPose}, ${altBackground}, photorealistic, high fashion, professional photography, detailed clothing, person clearly visible, full body shot`;
-        const pollinationsUrl2 = `https://image.pollinations.ai/prompt/${encodeURIComponent(altPrompt)}?width=512&height=768&model=turbo&enhance=true&seed=${randomSeed + 999}&timestamp=${timestamp + 1000}&session=${sessionId}_alt`;
+        const altPrompt = `${genderSubject}, ${altStyle} wearing ${prompt}, ${altPose}, ${altBackground}, photorealistic, high fashion, professional photography, detailed clothing, person clearly visible, full body shot`;
+        const pollinationsUrl2 = `https://image.pollinations.ai/prompt/${encodeURIComponent(altPrompt)}?width=512&height=768&model=turbo&enhance=true&seed=${Date.now() + 1}&timestamp=${timestamp + 1000}&session=${sessionId}_alt`;
         imageResults.push({
             url: pollinationsUrl2,
             service: 'Pollinations AI (Turbo)',
@@ -1414,48 +1586,89 @@ function refreshApp() {
     location.reload();
 }
 
-// Gender selection functionality
-function selectGender(gender) {
-    console.log('👤 Gender selected:', gender);
-    
-    // Update app state
-    appState.selectedGender = gender;
-    
-    // Update UI
-    document.querySelectorAll('.gender-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelector(`[data-gender="${gender}"]`).classList.add('active');
-    
+// Function to update selected preferences (gender and style)
+function updatePreferences(type, value) {
+    console.log(`Updating preference: ${type} to ${value}`);
+
+    if (type === 'gender') {
+        appState.selectedGender = value;
+        // Update UI for gender buttons
+        document.querySelectorAll('.gender-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelector(`[data-gender="${value}"]`).classList.add('active');
+    } else if (type === 'style') {
+        appState.selectedStyle = value;
+        // Update UI for style buttons
+        document.querySelectorAll('.style-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelector(`[data-style="${value}"]`).classList.add('active');
+    }
+
     // Regenerate outfit recommendation if weather data is available
     if (appState.currentWeather) {
-        const outfitData = generateOutfitRecommendation(appState.currentWeather, gender);
-        appState.outfitPrompt = outfitData.prompt;
-        appState.recommendedProducts = outfitData.products;
-        updateOutfitUI(outfitData);
-        
-        // Clear any existing generated images
-        const imageContainer = document.getElementById('generated-image-container');
-        if (imageContainer) {
-            imageContainer.remove();
+        try {
+            const outfitData = generateOutfitRecommendation(appState.currentWeather, appState.selectedGender, appState.selectedStyle);
+            appState.outfitPrompt = outfitData.prompt;
+            appState.recommendedProducts = outfitData.products;
+            updateOutfitUI(outfitData);
+
+            // Clear any existing generated images
+            const imageContainer = document.getElementById('generated-image-container');
+            if (imageContainer) {
+                imageContainer.innerHTML = ''; // Clear content
+                imageContainer.style.display = 'none'; // Hide container
+            }
+        } catch (error) {
+            console.error('Error generating outfit after preference change:', error);
+            handleAppError(new Error('Failed to update outfit recommendation. Please try again.'));
         }
     }
 }
 
+// Add event listeners for gender buttons
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.gender-btn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            updatePreferences('gender', event.target.dataset.gender || event.target.closest('.gender-btn').dataset.gender);
+        });
+    });
+
+    // Add event listener for style buttons
+    document.querySelectorAll('.style-btn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            updatePreferences('style', event.target.dataset.style || event.target.closest('.style-btn').dataset.style);
+        });
+    });
+
+    // Initial update of gender UI on load (if not already handled by initializeApp)
+    const initialGenderBtn = document.querySelector(`[data-gender="${appState.selectedGender}"]`);
+    if (initialGenderBtn) {
+        initialGenderBtn.classList.add('active');
+    }
+
+    // Initial update of style UI on load
+    const initialStyleBtn = document.querySelector(`[data-style="${appState.selectedStyle}"]`);
+    if (initialStyleBtn) {
+        initialStyleBtn.classList.add('active');
+    }
+});
+
 // Update outfit UI to show gender-specific recommendations
 function updateOutfitUI(outfitData) {
     const genderText = appState.selectedGender === 'female' ? 'Women\'s' : 'Men\'s';
+    const styleText = appState.selectedStyle.charAt(0).toUpperCase() + appState.selectedStyle.slice(1); // Capitalize first letter
     
-    document.getElementById('outfit-summary').textContent = `${genderText} ${outfitData.summary}`;
+    document.getElementById('outfit-summary').textContent = `${genderText} ${styleText} ${outfitData.summary}`;
     document.getElementById('clothing-items').textContent = outfitData.clothing;
     document.getElementById('footwear').textContent = outfitData.footwear;
     document.getElementById('accessories').textContent = outfitData.accessories;
-    document.getElementById('ai-prompt').textContent = outfitData.prompt;
     
     // Update product recommendations
     updateProductRecommendations(outfitData.products || []);
     
-    console.log(`✅ ${genderText} Outfit UI updated:`, outfitData);
+    console.log(`✅ ${genderText} ${styleText} Outfit UI updated:`, outfitData);
 }
 
 // Update product recommendations display
@@ -1523,7 +1736,7 @@ function updateProductRecommendations(products) {
 
 // Export for global access
 window.generateOutfitImage = generateOutfitImage;
-window.selectGender = selectGender;
+window.updatePreferences = updatePreferences; // Export new function
 window.refreshApp = refreshApp;
 window.displayGeneratedImages = displayGeneratedImages; // Export this as well for testing if needed
 window.displayLikedOutfits = displayLikedOutfits; // Export for external use
@@ -1533,3 +1746,13 @@ window.deleteLikedOutfit = deleteLikedOutfit; // Export for external use (e.g., 
 window.initializeLikedOutfitsPage = initializeLikedOutfitsPage; // Export for liked.html
 
 console.log('🌍 AI Outfit for Today - Script loaded successfully'); 
+
+
+
+
+
+
+
+
+
+

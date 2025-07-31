@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YM798MGCTD"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YM798MGCTD');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Outfit for Today - Weather-Based Fashion Recommendations</title>
@@ -63,7 +72,6 @@
                 <a href="liked.html" class="nav-button">❤️ Your Liked Outfits</a>
             </nav>
         </header>
-
 
 
         <main class="main-content">
@@ -161,24 +169,32 @@
                         </div>
                         
                         <div class="image-generation">
-                            <div class="prompt-preview">
-                                <h3 class="prompt-title" data-i18n="outfit.promptTitle">AI Image Prompt</h3>
-                                <div id="ai-prompt" class="prompt-text" data-i18n="outfit.promptGenerating">
-                                    Generating detailed outfit description for AI image creation...
-                                </div>
-                            </div>
-                            
                             <div class="generation-actions">
                                 <div class="gender-selection">
-                                    <h4 class="gender-title" data-i18n="outfit.genderSelection.title">👤 Choose Style</h4>
+                                    <h4 class="gender-title" data-i18n="outfit.genderSelection.title">👤 Choose Gender</h4>
                                     <div class="gender-buttons">
-                                        <button class="gender-btn active" data-gender="female" onclick="selectGender('female')">
+                                        <button class="gender-btn active" data-gender="female">
                                             <span class="gender-icon">👩</span>
                                             <span class="gender-text" data-i18n="outfit.genderSelection.women">Women's Style</span>
                                         </button>
-                                        <button class="gender-btn" data-gender="male" onclick="selectGender('male')">
+                                        <button class="gender-btn" data-gender="male">
                                             <span class="gender-icon">👨</span>
                                             <span class="gender-text" data-i18n="outfit.genderSelection.men">Men's Style</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="style-selection">
+                                    <h4 class="style-title">👗 Choose Style</h4>
+                                    <div class="style-buttons">
+                                        <button class="style-btn active" data-style="casual">
+                                            <span class="style-text">Casual</span>
+                                        </button>
+                                        <button class="style-btn" data-style="business">
+                                            <span class="style-text">Business</span>
+                                        </button>
+                                        <button class="style-btn" data-style="date">
+                                            <span class="style-text">Date</span>
                                         </button>
                                     </div>
                                 </div>
@@ -194,6 +210,13 @@
                                 <!-- Image Generation Container -->
                                 <div id="generated-image-container" class="generated-image-container" style="display: none;">
                                     <!-- Images will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <div class="prompt-preview">
+                                <h3 class="prompt-title" data-i18n="outfit.promptTitle">AI Image Prompt</h3>
+                                <div id="ai-prompt" class="prompt-text hidden" data-i18n="outfit.promptGenerating">
+                                    Generating detailed outfit description for AI image creation...
                                 </div>
                             </div>
                             
@@ -216,7 +239,7 @@
 
 
             <!-- How It Works Section -->
-            <section class="info-section">
+            <section id="how-it-works-section" class="info-section">
                 <h2 class="section-title" data-i18n="howItWorks.title">How It Works</h2>
                 <div class="info-grid">
                     <div class="info-item">
@@ -266,7 +289,7 @@
                     <p>Weather-smart fashion recommendations worldwide</p>
                 </div>
                 <div class="footer-links">
-                    <a href="#" onclick="location.reload()">Refresh Weather</a>
+                    <a href="index.html">Home</a>
                     <a href="privacy.html">Privacy Policy</a>
                     <a href="terms.html">Terms of Service</a>
                 </div>

@@ -120,6 +120,11 @@ body {
 
 .main-nav {
     margin-top: var(--space-xl);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
 }
 
 .nav-button {
@@ -288,6 +293,73 @@ body {
 .weather-section,
 .outfit-section {
     margin-bottom: var(--space-2xl);
+}
+
+/* Styles for static content pages */
+.static-page-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-xl);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: var(--space-2xl);
+}
+
+.static-page-content h2 {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.static-page-content h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-xs);
+    border-bottom: 2px solid var(--gray-200);
+}
+
+.static-page-content p {
+    font-size: var(--font-size-base);
+    color: var(--gray-700);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+}
+
+.static-page-content ul {
+    list-style: disc;
+    margin-left: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    color: var(--gray-700);
+}
+
+.static-page-content ul li {
+    margin-bottom: var(--space-sm);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+}
+
+.content-block {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+    .static-page-content {
+        padding: var(--space-lg);
+    }
+    .content-block {
+        padding: var(--space-sm);
+    }
+    .static-page-content h2 {
+        font-size: var(--font-size-xl);
+    }
+    .static-page-content h3 {
+        font-size: var(--font-size-lg);
+    }
 }
 
 /* Weather Card */
@@ -524,6 +596,65 @@ body {
 }
 
 .gender-btn.active .gender-text {
+    color: var(--white);
+}
+
+/* Style Selection Section */
+.style-selection {
+    margin-bottom: var(--space-xl);
+    text-align: center;
+}
+
+.style-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: var(--space-md);
+}
+
+.style-buttons {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.style-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    background: var(--white);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: var(--transition-normal);
+    min-width: 120px;
+    font-family: inherit;
+}
+
+.style-btn:hover {
+    border-color: var(--primary-gradient);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.style-btn.active {
+    background: var(--primary-gradient);
+    border-color: transparent;
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.style-text {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-align: center;
+}
+
+.style-btn.active .style-text {
     color: var(--white);
 }
 
@@ -807,6 +938,12 @@ body {
     font-size: var(--font-size-sm);
     color: var(--gray-600);
     line-height: 1.6;
+}
+
+/* Fashion Guides Section Specific Styles (inherits from .info-section) */
+.fashion-guides-section .info-icon {
+    /* You can override or add specific icons here if needed */
+    font-size: 3.5rem; /* Slightly larger icons for these sections */
 }
 
 /* Error Section */
