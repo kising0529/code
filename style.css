@@ -1876,6 +1876,12 @@ select#language-select option {
         background: rgba(55, 65, 81, 0.8);
         border-color: rgba(75, 85, 99, 0.3);
     }
+
+    /* Adjust trends page text color for better readability in dark mode */
+    .static-page-content p,
+    .static-page-content ul li {
+        color: var(--gray-200); /* Use a lighter gray for better contrast */
+    }
 } 
 
 /* Liked Images Section Styles */
