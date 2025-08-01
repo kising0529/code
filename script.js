@@ -80,7 +80,22 @@ const translations = {
         "howItWorks.steps.ai.title": "AI Recommendation",
         "howItWorks.steps.ai.description": "Smart algorithms suggest the perfect outfit based on current weather",
         "howItWorks.steps.visual.title": "Visual Generation",
-        "howItWorks.steps.visual.description": "Generate stunning AI images of your recommended outfit instantly"
+        "howItWorks.steps.visual.description": "Generate stunning AI images of your recommended outfit instantly",
+        "trends.pageTitle": "Latest Trends - AI Outfit for Today",
+        "trends.headerTitle": "Latest Trends",
+        "trends.headerSubtitle": "Discover the hottest fashion trends powered by AI.",
+        "trends.sectionTitle": "Emerging Fashion Trends",
+        "trends.introText": "Stay ahead of the curve with insights into the latest fashion trends. Our AI analyzes vast amounts of fashion data to bring you predictions and highlights of what's hot.",
+        "trends.trend1Title": "1. Sustainable & Eco-Conscious Fashion",
+        "trends.trend1Text": "The demand for environmentally friendly clothing continues to rise. Look for natural fibers, recycled materials, and transparent supply chains.",
+        "trends.trend2Title": "2. Comfort-First Athleisure",
+        "trends.trend2Text": "Comfort remains key, with athleisure wear evolving to include more sophisticated designs suitable for various casual settings.",
+        "trends.trend3Title": "3. Bold Colors & Statement Pieces",
+        "trends.trend3Text": "After a period of muted tones, vibrant colors and unique, eye-catching statement pieces are making a comeback.",
+        "trends.trend4Title": "4. Gender-Neutral Apparel",
+        "trends.trend4Text": "Fashion is becoming increasingly inclusive, with more brands offering gender-neutral collections that challenge traditional norms.",
+        "trends.trend5Title": "5. Vintage & Retro Revival",
+        "trends.trend5Text": "Nostalgia plays a big role, with fashion drawing inspiration from past decades, particularly the 70s, 90s, and early 2000s."
     },
     ko: {
         "app.title": "오늘의 AI 코디",
@@ -145,7 +160,7 @@ const translations = {
         "terms.changes": "6. 약관 변경",
         "terms.changesText1": "당사는 언제든지 본 약관을 수정하거나 교체할 권리를 보유합니다. 그러한 변경 후에도 서비스를 계속 사용하는 것은 새로운 약관에 동의하는 것으로 간주됩니다.",
         "terms.contact": "7. 연락처 정보",
-        "terms.contactText1": "본 약관에 대해 질문이 있으시면 [Your Contact Email]으로 문의하십시오.",
+        "terms.contactText1": "If you have any questions about these Terms, please contact us at [Your Contact Email].",
         "howItWorks.title": "작동 방식",
         "howItWorks.steps.location.title": "자동 위치",
         "howItWorks.steps.location.description": "정확한 현지 날씨 데이터를 얻기 위해 자동으로 귀하의 위치를 감지합니다",
@@ -154,7 +169,22 @@ const translations = {
         "howItWorks.steps.ai.title": "AI 추천",
         "howItWorks.steps.ai.description": "스마트 알고리즘이 현재 날씨에 맞는 완벽한 코디를 제안합니다",
         "howItWorks.steps.visual.title": "시각적 생성",
-        "howItWorks.steps.visual.description": "추천 코디의 멋진 AI 이미지를 즉시 생성합니다"
+        "howItWorks.steps.visual.description": "추천 코디의 멋진 AI 이미지를 즉시 생성합니다",
+        "trends.pageTitle": "최신 트렌드 - 오늘의 AI 코디",
+        "trends.headerTitle": "최신 트렌드",
+        "trends.headerSubtitle": "AI 기반의 최신 패션 트렌드를 발견하세요.",
+        "trends.sectionTitle": "떠오르는 패션 트렌드",
+        "trends.introText": "최신 패션 트렌드에 대한 인사이트로 앞서 나가세요. 저희 AI는 방대한 패션 데이터를 분석하여 뜨거운 트렌드 예측과 하이라이트를 제공합니다.",
+        "trends.trend1Title": "1. 지속 가능하고 친환경적인 패션",
+        "trends.trend1Text": "환경 친화적인 의류에 대한 수요는 계속 증가하고 있습니다. 천연 섬유, 재활용 재료 및 투명한 공급망을 찾아보세요.",
+        "trends.trend2Title": "2. 편안함을 최우선으로 하는 애슬레저",
+        "trends.trend2Text": "다양한 캐주얼 환경에 적합한 세련된 디자인을 포함하도록 애슬레저웨어가 진화하면서 편안함이 여전히 중요합니다.",
+        "trends.trend3Title": "3. 대담한 색상 및 스테이트먼트 의류",
+        "trends.trend3Text": "차분한 톤의 시대를 지나, 생생한 색상과 독특하고 시선을 사로잡는 스테이트먼트 의류가 다시 유행하고 있습니다.",
+        "trends.trend4Title": "4. 성 중립 의류",
+        "trends.trend4Text": "패션은 점점 더 포괄적으로 변하고 있으며, 더 많은 브랜드가 전통적인 규범에 도전하는 성 중립 컬렉션을 제공하고 있습니다.",
+        "trends.trend5Title": "5. 빈티지 및 레트로 부활",
+        "trends.trend5Text": "과거 수십 년, 특히 70년대, 90년대, 2000년대 초반에서 영감을 얻은 패션이 향수를 불러일으키며 큰 역할을 하고 있습니다."
     },
     ja: {
         "app.title": "今日のAIコーデ",
@@ -204,7 +234,22 @@ const translations = {
         "privacy.changesText1": "当社は、本プライバシーポリシーを随時更新することがあります。変更があった場合は、このページに新しいプライバシーポリシーを掲載してお客様に通知します。",
         "privacy.contact": "お問い合わせ",
         "privacy.contactText1": "本プライバシーポリシーに関するご質問は、[Your Contact Email]までお問い合わせください。",
-        "terms.contactText1": "本プライバシーポリシーに関するご質問は、[Your Contact Email]までお問い合わせください。",
+        "terms.title": "利用規約",
+        "terms.introduction": "AI Outfit for Todayにようこそ。本利用規約（\"本規約\"）は、AI Outfit for Todayのウェブサイトおよびサービス（\"本サービス\"）のご利用を規定するものです。本サービスにアクセスまたは利用することにより、お客様は本規約に拘束されることに同意したものとみなされます。",
+        "terms.useOfService": "1. サービスのご利用",
+        "terms.useOfServiceText1": "本サービスは、気象データとユーザーの好みに基づいてAIが生成した服装の推奨を提供します。服装の画像は視覚化のみを目的としており、第三者のAI画像サービスによって生成されます。",
+        "terms.userConduct": "2. ユーザーの行為",
+        "terms.userConductText1": "お客様は、違法または禁止された活動のために本サービスを利用しないことに同意します。",
+        "terms.intellectualProperty": "3. 知的財産",
+        "terms.intellectualPropertyText1": "本サービス上のすべてのコンテンツ、商標、および知的財産は、[貴社名/AI Outfit for Today]またはそのライセンサーが所有します。事前の書面による許可なく、本サービスのいかなるコンテンツも使用してはなりません。",
+        "terms.disclaimer": "4. 保証の否認",
+        "terms.disclaimerText1": "本サービスは、「現状有姿」および「利用可能な状態」で提供され、明示的または黙示的を問わず、いかなる種類の保証も行いません。",
+        "terms.limitationOfLiability": "5. 責任の制限",
+        "terms.limitationOfLiabilityText1": "いかなる場合も、[貴社名/AI Outfit for Today]は、お客様の本サービスのご利用に起因または関連する間接的、偶発的、特別、結果的、または懲罰的損害について責任を負わないものとします。",
+        "terms.changes": "6. 規約の変更",
+        "terms.changesText1": "当社は、本規約をいつでも変更または置換する権利を留保します。かかる変更後も本サービスを継続して利用することにより、お客様は新しい規約に同意したものとみなされます。",
+        "terms.contact": "7. お問い合わせ",
+        "terms.contactText1": "本規約に関するご質問は、[貴社連絡先メールアドレス]までお問い合わせください。",
         "howItWorks.title": "仕組み",
         "howItWorks.steps.location.title": "自動位置情報",
         "howItWorks.steps.location.description": "正確な現地の天気データを取得するために、自動的にお客様の位置情報を検出します",
@@ -213,7 +258,22 @@ const translations = {
         "howItWorks.steps.ai.title": "AIレコメンデーション",
         "howItWorks.steps.ai.description": "スマートなアルゴリズムが現在の天気にぴったりのコーデを提案します",
         "howItWorks.steps.visual.title": "視覚生成",
-        "howItWorks.steps.visual.description": "おすすめのコーデの素晴らしいAI画像を即座に生成します"
+        "howItWorks.steps.visual.description": "おすすめのコーデの素晴らしいAI画像を即座に生成します",
+        "trends.pageTitle": "最新トレンド - 今日のAIコーデ",
+        "trends.headerTitle": "最新トレンド",
+        "trends.headerSubtitle": "AIを活用した最新のファッション・トレンドを発見しましょう。",
+        "trends.sectionTitle": "最新のファッショントレンド",
+        "trends.introText": "最新のファッショントレンドに関する洞察を得て、流行の最先端を行きましょう。当社のAIは膨大なファッションデータを分析し、旬の予測とハイライトをお届けします。",
+        "trends.trend1Title": "1. サステナブル＆エコ志向ファッション",
+        "trends.trend1Text": "環境に優しい衣料品への需要は引き続き高まっています。天然繊維、リサイクル素材、透明性のあるサプライチェーンに注目しましょう。",
+        "trends.trend2Title": "2. 快適性重視のアスレジャー",
+        "trends.trend2Text": "快適性は依然として重要であり、アスレジャーウェアは様々なカジュアルな場面に適した洗練されたデザインへと進化しています。",
+        "trends.trend3Title": "3. 大胆な色とステートメントピース",
+        "trends.trend3Text": "控えめなトーンの時代を経て、鮮やかな色やユニークで目を引くステートメントピースが再燃しています。",
+        "trends.trend4Title": "4. ジェンダーニュートラルアパレル",
+        "trends.trend4Text": "ファッションはますます包括的になり、より多くのブランドが従来の規範に挑戦するジェンダーニュートラルなコレクションを提供しています。",
+        "trends.trend5Title": "5. ヴィンテージ＆レトロリバイバル",
+        "trends.trend5Text": "ノスタルジアが大きな役割を果たしており、特に70年代、90年代、2000年代初頭など、過去数十年のファッションからインスピレーションを得ています。"
     },
     zh: {
         "app.title": "今日AI穿搭",
@@ -281,13 +341,28 @@ const translations = {
         "terms.contactText1": "如果您对本条款有任何疑问，请通过 [Your Contact Email] 联系我们。",
         "howItWorks.title": "工作原理",
         "howItWorks.steps.location.title": "自动定位",
-        "howItWorks.steps.location.description": "我们自动检测您的位置，以获取准确的本地天气数据",
+        "howItWorks.steps.location.description": "我们自动检测您的位置以获取准确的本地天气数据",
         "howItWorks.steps.weather.title": "天气分析",
-        "howItWorks.steps.weather.description": "提供包括气温、湿度和天气状况在内的实时天气信息",
+        "howItWorks.steps.weather.description": "提供包括温度、湿度和天气条件在内的实时天气信息",
         "howItWorks.steps.ai.title": "AI推荐",
-        "howItWorks.steps.ai.description": "智能算法根据当前天气为您推荐完美穿搭",
+        "howItWorks.steps.ai.description": "智能算法根据当前天气推荐完美的穿搭",
         "howItWorks.steps.visual.title": "视觉生成",
-        "howItWorks.steps.visual.description": "即时生成您推荐穿搭的精美AI图片"
+        "howItWorks.steps.visual.description": "即时生成您推荐穿搭的精美AI图片",
+        "trends.pageTitle": "最新趋势 - 今日AI穿搭",
+        "trends.headerTitle": "最新趋势",
+        "trends.headerSubtitle": "探索由AI驱动的最新时尚趋势。",
+        "trends.sectionTitle": "新兴时尚趋势",
+        "trends.introText": "通过对最新时尚趋势的洞察，保持领先。我们的AI分析海量时尚数据，为您带来热门预测和亮点。",
+        "trends.trend1Title": "1. 可持续和环保时尚",
+        "trends.trend1Text": "对环保服装的需求持续增长。关注天然纤维、回收材料和透明的供应链。",
+        "trends.trend2Title": "2. 舒适至上的运动休闲",
+        "trends.trend2Text": "舒适性依然是关键，运动休闲服饰正在演变为适合各种休闲场合的更精致设计。",
+        "trends.trend3Title": "3. 大胆色彩与个性单品",
+        "trends.trend3Text": "在经历了一段柔和色调的时期后，鲜艳的色彩和独特、引人注目的个性单品正在卷土重来。",
+        "trends.trend4Title": "4. 无性别服装",
+        "trends.trend4Text": "时尚正变得越来越包容，越来越多的品牌提供挑战传统规范的无性别系列。",
+        "trends.trend5Title": "5. 复古潮流回归",
+        "trends.trend5Text": "怀旧情结扮演着重要角色，时尚从过去的几十年中汲取灵感，尤其是70年代、90年代和2000年代初期。"
     }
 };
 
@@ -1212,7 +1287,7 @@ async function updateWeatherUI(weatherData, locationName) {
         });
         if (localTimeElement) localTimeElement.textContent = `🕐 ${timeString}`;
     } catch (error) {
-        if (localTimeElement) localTimeElement.textContent = '�� Local time';
+        if (localTimeElement) localTimeElement.textContent = ' Local time';
     }
 }
 
@@ -1832,16 +1907,16 @@ function showLoadingState() {
     const loadingSection = document.getElementById('loading-section');
     const weatherSection = document.getElementById('weather-section');
     const outfitSection = document.getElementById('outfit-section');
+    const productRecommendationsSection = document.querySelector('.product-recommendations');
+    const howItWorksSection = document.getElementById('how-it-works-section');
     const errorSection = document.getElementById('error-section');
 
-    console.log('DEBUG showLoadingState: loadingSection', loadingSection);
-    console.log('DEBUG showLoadingState: weatherSection', weatherSection);
-    console.log('DEBUG showLoadingState: outfitSection', outfitSection);
-    console.log('DEBUG showLoadingState: errorSection', errorSection);
-
+    // Hide all main content sections and show only loading
     if (loadingSection) loadingSection.classList.remove('hidden');
     if (weatherSection) weatherSection.classList.add('hidden');
     if (outfitSection) outfitSection.classList.add('hidden');
+    if (productRecommendationsSection) productRecommendationsSection.classList.add('hidden');
+    if (howItWorksSection) howItWorksSection.classList.add('hidden');
     if (errorSection) errorSection.classList.add('hidden');
 }
 
@@ -1849,28 +1924,34 @@ function hideLoadingState() {
     const loadingSection = document.getElementById('loading-section');
     const weatherSection = document.getElementById('weather-section');
     const outfitSection = document.getElementById('outfit-section');
+    const productRecommendationsSection = document.querySelector('.product-recommendations');
+    const howItWorksSection = document.getElementById('how-it-works-section');
     const errorSection = document.getElementById('error-section');
 
-    console.log('DEBUG hideLoadingState: loadingSection', loadingSection);
-    console.log('DEBUG hideLoadingState: weatherSection', weatherSection);
-    console.log('DEBUG hideLoadingState: outfitSection', outfitSection);
-    console.log('DEBUG hideLoadingState: errorSection', errorSection);
-
+    // Hide all main content and loading sections
     if (loadingSection) loadingSection.classList.add('hidden');
     if (weatherSection) weatherSection.classList.add('hidden');
     if (outfitSection) outfitSection.classList.add('hidden');
+    if (productRecommendationsSection) productRecommendationsSection.classList.add('hidden');
+    if (howItWorksSection) howItWorksSection.classList.add('hidden');
     if (errorSection) errorSection.classList.add('hidden');
 }
 
 function showMainContent() {
     const weatherSection = document.getElementById('weather-section');
     const outfitSection = document.getElementById('outfit-section');
+    const productRecommendationsSection = document.querySelector('.product-recommendations');
+    const howItWorksSection = document.getElementById('how-it-works-section');
+    const loadingSection = document.getElementById('loading-section');
+    const errorSection = document.getElementById('error-section');
 
-    console.log('DEBUG showMainContent: weatherSection', weatherSection);
-    console.log('DEBUG showMainContent: outfitSection', outfitSection);
-
+    // Show main content sections, hide loading and error
+    if (loadingSection) loadingSection.classList.add('hidden');
+    if (errorSection) errorSection.classList.add('hidden');
     if (weatherSection) weatherSection.classList.remove('hidden');
     if (outfitSection) outfitSection.classList.remove('hidden');
+    if (productRecommendationsSection) productRecommendationsSection.classList.remove('hidden');
+    if (howItWorksSection) howItWorksSection.classList.remove('hidden');
 }
 
 function updateLoadingStep(stepName, status) {
@@ -1885,7 +1966,7 @@ function updateLoadingStep(stepName, status) {
 function handleAppError(error) {
     console.error('❌ Application error:', error);
     
-    hideLoadingState();
+    hideLoadingState(); // This hides all content except error
     const errorMessageElement = document.getElementById('error-message');
     const errorSectionElement = document.getElementById('error-section');
 
@@ -1993,78 +2074,50 @@ function updateOutfitUI(outfitData) {
     const genderText = appState.selectedGender === 'female' ? 'Women\'s' : 'Men\'s';
     const styleText = appState.selectedStyle.charAt(0).toUpperCase() + appState.selectedStyle.slice(1); // Capitalize first letter
     
-    document.getElementById('outfit-summary').textContent = `${genderText} ${styleText} ${outfitData.summary}`;
-    document.getElementById('clothing-items').textContent = outfitData.clothing;
-    document.getElementById('footwear').textContent = outfitData.footwear;
-    document.getElementById('accessories').textContent = outfitData.accessories;
+    document.getElementById('outfit-summary').textContent = outfitData.summary;
+    document.getElementById('clothing-items').textContent = outfitData.clothing; // Corrected ID
+    document.getElementById('footwear').textContent = outfitData.footwear;       // Corrected ID
+    document.getElementById('accessories').textContent = outfitData.accessories; // Corrected ID
+    document.getElementById('outfit-style-display').textContent = outfitData.style; // Corrected ID
     
+    // Hide AI image prompt related elements by default
+    const aiPromptElement = document.getElementById('ai-prompt');
+    const promptPreviewElement = document.querySelector('.prompt-preview');
+
+    if (aiPromptElement) aiPromptElement.classList.add('hidden');
+    if (promptPreviewElement) promptPreviewElement.classList.add('hidden');
+
     // Update product recommendations
-    updateProductRecommendations(outfitData.products || []);
-    
-    console.log(`✅ ${genderText} ${styleText} Outfit UI updated:`, outfitData);
+    updateProductRecommendations(outfitData.products);
 }
 
-// Update product recommendations display
 function updateProductRecommendations(products) {
-    console.log('📦 Updating product recommendations UI with:', products);
-    
-    const productsGrid = document.getElementById('recommended-products');
-    
-    if (!productsGrid) {
-        console.error('❌ Products grid element not found!');
+    const productsContainer = document.getElementById('recommended-products'); // Corrected ID
+    if (!productsContainer) return;
+
+    if (products.length === 0) {
+        productsContainer.innerHTML = '<p data-i18n="products.noProducts">No product recommendations available - showing test product.</p>';
         return;
     }
-    
-    if (!products || products.length === 0) {
-        console.log('⚠️ No products to display');
-        // Show test products for debugging
-        productsGrid.innerHTML = `
-            <div class="product-item">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=300&h=300&fit=crop" alt="Test Product">
-                    <div class="product-overlay">
-                        <a href="https://amazon.com" target="_blank" class="view-on-amazon">View on Amazon</a>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h4 class="product-name">Test Product</h4>
-                    <p class="product-price">$99.99</p>
-                    <span class="product-category">Test Category</span>
-                </div>
-            </div>
-            <p class="no-products">Debug: No product recommendations available - showing test product.</p>
-        `;
-        return;
-    }
-    
+
     const productsHTML = products.map(product => `
         <div class="product-item">
-            <a href="${product.affiliate}" target="_blank" rel="noopener noreferrer" class="product-link">
-                <div class="product-image-container">
-                    <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy">
-                    <div class="product-overlay">
-                        <span class="view-on-amazon">View on Amazon</span>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h4 class="product-name">${product.name}</h4>
-                    <div class="product-price">${product.price}</div>
-                    <div class="product-category">${product.category}</div>
-                </div>
-            </a>
+            <img src="${product.image}" alt="${product.name}" class="product-image">
+            <div class="product-info">
+                <h5 class="product-name">${product.name}</h5>
+                <p class="product-price">${product.price}</p>
+                <a href="${product.affiliate}" target="_blank" rel="noopener noreferrer" class="buy-now-btn">Buy Now</a>
+            </div>
         </div>
     `).join('');
-    
-    productsGrid.innerHTML = productsHTML;
-    
-    // Add click tracking for analytics
-    products.forEach((product, index) => {
-        const productLink = productsGrid.children[index].querySelector('.product-link');
-        productLink.addEventListener('click', () => {
-            console.log('🛍️ Product clicked:', product.name, product.affiliate);
-            // Here you could add analytics tracking
-        });
-    });
+
+    productsContainer.innerHTML = productsHTML;
+
+    // Attach translation to the "No product recommendations" message if it appears
+    const noProductsMsg = productsContainer.querySelector('[data-i18n="products.noProducts"]');
+    if (noProductsMsg) {
+        applyTranslations(localStorage.getItem('selectedLanguage') || (translations[navigator.language.split('-')[0]] ? navigator.language.split('-')[0] : 'en'));
+    }
 }
 
 // Export for global access

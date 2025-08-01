@@ -73,6 +73,7 @@
             </div>
             <nav class="main-nav">
                 <a href="liked.html" class="nav-button">❤️ Your Liked Outfits</a>
+                <a href="trends.html" class="nav-button">📈 Latest Trends</a>
             </nav>
             <!-- Language Selector -->
             <div class="language-selector">
@@ -121,7 +122,7 @@
             </div>
 
             <!-- Weather Information Section -->
-            <section id="weather-section" class="weather-section hidden">
+            <section id="weather-section" class="weather-section">
                 <div class="weather-card">
                     <div class="weather-header">
                         <h2 class="section-title" data-i18n="weather.title">Current Weather</h2>
@@ -150,7 +151,7 @@
             </section>
 
             <!-- Outfit Recommendation Section -->
-            <section id="outfit-section" class="outfit-section hidden">
+            <section id="outfit-section" class="outfit-section">
                 <div class="outfit-card">
                     <div class="outfit-header">
                         <h2 class="section-title" data-i18n="outfit.title">Perfect Outfit for Today</h2>
@@ -177,6 +178,10 @@
                                 <div class="detail-item">
                                     <span class="detail-icon">🎒</span>
                                     <span id="accessories" class="detail-text" data-i18n="outfit.details.accessories">Choosing accessories...</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">✨</span>
+                                    <span id="outfit-style-display" class="detail-text" data-i18n="outfit.details.style">Determining style...</span>
                                 </div>
                             </div>
                         </div>
@@ -378,12 +383,12 @@
             
             document.body.appendChild(installNotification);
             
-            // Auto hide after 10 seconds
-            setTimeout(() => {
-                if (installNotification.parentElement) {
-                    installNotification.remove();
-                }
-            }, 10000);
+            // Removed: Auto hide after 10 seconds
+            // setTimeout(() => {
+            //     if (installNotification.parentElement) {
+            //         installNotification.remove();
+            //     }
+            // }, 10000);
         }
 
         function installPWA() {
@@ -400,10 +405,6 @@
             }
         }
 
-        // Track app install
-        window.addEventListener('appinstalled', (evt) => {
-            console.log('PWA: App was installed successfully');
-        });
     </script>
 </body>
 </html> 
