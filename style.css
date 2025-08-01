@@ -1789,19 +1789,19 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.7); /* Reverted to original background for visibility */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: opacity var(--transition-normal);
+    opacity: 0; /* Hidden by default */
+    transition: opacity var(--transition-normal); /* Reverted transition for hover effect */
     padding: var(--space-md);
     text-align: center;
 }
 
 .liked-image-item:hover .liked-image-overlay {
-    opacity: 1;
+    opacity: 1; /* Show overlay on hover */
 }
 
 .liked-image-prompt {
