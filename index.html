@@ -71,6 +71,16 @@
             <nav class="main-nav">
                 <a href="liked.html" class="nav-button">❤️ Your Liked Outfits</a>
             </nav>
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <label for="language-select" data-i18n="language.label">Language:</label>
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="ko">한국어</option>
+                    <option value="ja">日本語</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
         </header>
 
 
@@ -171,37 +181,37 @@
                         <div class="image-generation">
                             <div class="generation-actions">
                                 <div class="gender-selection">
-                                    <h4 class="gender-title" data-i18n="outfit.genderSelection.title">👤 Choose Gender</h4>
+                                    <h4 class="gender-title" data-i18n="gender.title">👤 Choose Gender</h4>
                                     <div class="gender-buttons">
                                         <button class="gender-btn active" data-gender="female">
                                             <span class="gender-icon">👩</span>
-                                            <span class="gender-text" data-i18n="outfit.genderSelection.women">Women's Style</span>
+                                            <span class="gender-text" data-i18n="gender.female">Women's Style</span>
                                         </button>
                                         <button class="gender-btn" data-gender="male">
                                             <span class="gender-icon">👨</span>
-                                            <span class="gender-text" data-i18n="outfit.genderSelection.men">Men's Style</span>
+                                            <span class="gender-text" data-i18n="gender.male">Men's Style</span>
                                         </button>
                                     </div>
                                 </div>
                                 
                                 <div class="style-selection">
-                                    <h4 class="style-title">👗 Choose Style</h4>
+                                    <h4 class="style-title" data-i18n="style.title">👗 Choose Style</h4>
                                     <div class="style-buttons">
                                         <button class="style-btn active" data-style="casual">
-                                            <span class="style-text">Casual</span>
+                                            <span class="style-text" data-i18n="style.casual">Casual</span>
                                         </button>
                                         <button class="style-btn" data-style="business">
-                                            <span class="style-text">Business</span>
+                                            <span class="style-text" data-i18n="style.business">Business</span>
                                         </button>
                                         <button class="style-btn" data-style="date">
-                                            <span class="style-text">Date</span>
+                                            <span class="style-text" data-i18n="style.date">Date</span>
                                         </button>
                                     </div>
                                 </div>
                                 
                                 <button id="generate-image-btn" class="generate-btn" onclick="generateOutfitImage()">
                                     <span class="btn-icon">🎨</span>
-                                    <span class="btn-text" data-i18n="outfit.generateButton">Generate AI Outfit Image</span>
+                                    <span class="btn-text" data-i18n="outfit.generateImage">Generate AI Outfit Image</span>
                                 </button>
                                 <p class="generation-note" data-i18n="outfit.generateNote">
                                     AI will create outfit images based on your selected style and current weather
@@ -269,13 +279,13 @@
             <div id="error-section" class="error-section hidden">
                 <div class="error-card">
                     <div class="error-icon">⚠️</div>
-                    <h3 class="error-title">Unable to Get Weather Data</h3>
-                    <p id="error-message" class="error-message">
+                    <h3 class="error-title" data-i18n="error.title">Unable to Get Weather Data</h3>
+                    <p id="error-message" class="error-message" data-i18n="error.message">
                         Please enable location access and refresh the page to get personalized weather-based outfit recommendations.
                     </p>
                     <button onclick="location.reload()" class="retry-btn">
                         <span class="btn-icon">🔄</span>
-                        <span class="btn-text">Try Again</span>
+                        <span class="btn-text" data-i18n="error.retryButton">Try Again</span>
                     </button>
                 </div>
             </div>
@@ -285,17 +295,17 @@
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <h3>AI Outfit for Today</h3>
-                    <p>Weather-smart fashion recommendations worldwide</p>
+                    <h3 data-i18n="footer.brandName">AI Outfit for Today</h3>
+                    <p data-i18n="footer.brandSlogan">Weather-smart fashion recommendations worldwide</p>
                 </div>
                 <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
+                    <a href="index.html" data-i18n="footer.home">Home</a>
+                    <a href="privacy.html" data-i18n="privacy.link">Privacy Policy</a>
+                    <a href="terms.html" data-i18n="terms.link">Terms of Service</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 AI Outfit for Today. Available globally. Powered by Open-Meteo API.</p>
+                <p data-i18n="footer.copy">© 2024 AI Outfit for Today. Available globally. Powered by Open-Meteo API.</p>
             </div>
         </footer>
 

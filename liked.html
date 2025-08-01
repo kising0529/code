@@ -38,14 +38,25 @@
             <nav class="main-nav">
                 <a href="/index.html" class="nav-button">🏠 Home</a>
             </nav>
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <label for="language-select" data-i18n="language.label">Language:</label>
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="ko">한국어</option>
+                    <option value="ja">日本語</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
         </header>
 
         <main class="main-content">
             <!-- Liked Images Section -->
             <section id="liked-images-section" class="liked-images-section">
+                <h2 class="section-title" data-i18n="liked.title">Your Liked Outfits</h2>
                 <div id="liked-images-grid" class="liked-images-grid">
                     <!-- Liked images will be loaded here by JavaScript -->
-                    <p id="no-liked-images" class="no-images-message">No liked images yet. Like an outfit on the <a href="index.html">Home page</a> to save it here!</p>
+                    <p id="no-liked-images" class="no-images-message" data-i18n="liked.noImages">No liked images yet. Like an outfit on the <a href="index.html" data-i18n="footer.home">Home page</a> to save it here!</p>
                 </div>
             </section>
         </main>
@@ -54,17 +65,17 @@
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <h3>AI Outfit for Today</h3>
-                    <p>Weather-smart fashion recommendations worldwide</p>
+                    <h3 data-i18n="footer.brandName">AI Outfit for Today</h3>
+                    <p data-i18n="footer.brandSlogan">Weather-smart fashion recommendations worldwide</p>
                 </div>
                 <div class="footer-links">
-                    <a href="/index.html">Home</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
+                    <a href="/index.html" data-i18n="footer.home">Home</a>
+                    <a href="privacy.html" data-i18n="privacy.link">Privacy Policy</a>
+                    <a href="terms.html" data-i18n="terms.link">Terms of Service</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 AI Outfit for Today. Available globally. Powered by Open-Meteo API.</p>
+                <p data-i18n="footer.copy">© 2024 AI Outfit for Today. Available globally. Powered by Open-Meteo API.</p>
             </div>
         </footer>
     </div>
@@ -79,8 +90,25 @@
             // Call a function in script.js to handle liked outfits initialization
             if (typeof initializeLikedOutfitsPage === 'function') {
                 initializeLikedOutfitsPage();
+            }
+             // Also apply translations on liked.html page
+            const userLang = navigator.language.split('-')[0];
+            const savedLang = localStorage.getItem('selectedLanguage');
+            const initialLang = savedLang || (translations[userLang] ? userLang : 'en');
+
+            const languageSelect = document.getElementById('language-select');
+            if (languageSelect) {
+                languageSelect.value = initialLang;
+                applyTranslations(initialLang);
+
+                languageSelect.addEventListener('change', (event) => {
+                    const newLang = event.target.value;
+                    localStorage.setItem('selectedLanguage', newLang);
+                    applyTranslations(newLang);
+                });
             } else {
-                console.error('initializeLikedOutfitsPage function not found in script.js');
+                console.warn('⚠️ Language selector element not found on this page. Applying translations once.');
+                applyTranslations(initialLang);
             }
         });
     </script>

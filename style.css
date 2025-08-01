@@ -173,7 +173,92 @@ body {
     to { transform: rotate(360deg); }
 }
 
+/* Language Selector Styles */
+.language-selector {
+    margin-top: var(--space-xl);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    color: var(--gray-700);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+}
 
+.language-selector label {
+    color: var(--gray-700);
+    font-weight: 600;
+}
+
+select#language-select {
+    /* Reset default styles */
+    appearance: none; /* Remove default arrow */
+    background-color: var(--white);
+    border: 2px solid var(--gray-300);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-lg);
+    font-size: var(--font-size-base);
+    color: var(--gray-800);
+    cursor: pointer;
+    outline: none;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+
+    /* Custom arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%236b7280" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%;
+    background-size: 1.2em auto;
+    padding-right: 2.5em; /* Make space for the arrow */
+}
+
+select#language-select:hover {
+    border-color: var(--primary-gradient);
+    box-shadow: var(--shadow-md);
+}
+
+select#language-select:focus {
+    border-color: #667eea; /* Primary accent color */
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2); /* Focus ring */
+}
+
+/* For IE10+ */
+select#language-select::-ms-expand {
+    display: none;
+}
+
+select#language-select option {
+    background-color: var(--white);
+    color: var(--gray-800);
+}
+
+/* Dark mode adjustments for selectbox */
+@media (prefers-color-scheme: dark) {
+    .language-selector label {
+        color: var(--gray-200);
+    }
+
+    select#language-select {
+        background-color: var(--gray-700);
+        border-color: var(--gray-600);
+        color: var(--white);
+        background-image: url('data:image/svg+xml;utf8,<svg fill="%23d1d5db" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    }
+
+    select#language-select:hover {
+        border-color: var(--accent-gradient);
+    }
+
+    select#language-select:focus {
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.4);
+    }
+
+    select#language-select option {
+        background-color: var(--gray-800);
+        color: var(--white);
+    }
+}
 
 /* Loading Section */
 .loading-section {
