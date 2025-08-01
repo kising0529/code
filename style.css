@@ -1882,6 +1882,11 @@ select#language-select option {
     .static-page-content ul li {
         color: var(--gray-200); /* Use a lighter gray for better contrast */
     }
+
+    /* Adjust trends page subheading color for better readability in dark mode */
+    .static-page-content h3 {
+        color: var(--white); /* Ensure it's fully visible */
+    }
 } 
 
 /* Liked Images Section Styles */
