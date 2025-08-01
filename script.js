@@ -1,7 +1,7 @@
 // Global configuration
 const CONFIG = {
     weatherAPI: 'https://api.open-meteo.com/v1/forecast',
-    geocodingAPI: 'https://api.open-meteo.com/v1/geocoding',
+    geocodingAPI: 'https://us1.api-bdc.net/data/reverse-geocode-client',
     updateInterval: 300000, // 5 minutes
     locationCacheTime: 3600000 // 1 hour
 };
@@ -884,22 +884,35 @@ async function fetchWeatherData(latitude, longitude) {
 // Get location name using reverse geocoding
 async function getLocationName(latitude, longitude) {
     try {
-        // Use a simple approach to get timezone-based location
-        const weatherResponse = await fetch(
-            `${CONFIG.weatherAPI}?latitude=${latitude}&longitude=${longitude}&current=temperature_2m&timezone=auto&forecast_days=1`
-        );
-        const weatherData = await weatherResponse.json();
+        const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+        const params = new URLSearchParams({
+            latitude: latitude.toString(),
+            longitude: longitude.toString(),
+            localityLanguage: currentLang // Request location name in current language
+        });
         
-        if (weatherData.timezone) {
-            // Extract city name from timezone (e.g., "America/New_York" -> "New York")
-            const timezoneParts = weatherData.timezone.split('/');
-            const cityName = timezoneParts[timezoneParts.length - 1].replace(/_/g, ' ');
-            return cityName || 'Your Location';
+        const url = `${CONFIG.geocodingAPI}?${params}`;
+        console.log('📍 Fetching location name from BigDataCloud:', url);
+
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`BigDataCloud Geocoding API request failed: ${response.status} ${response.statusText}`);
         }
         
-        return 'Your Location';
+        const data = await response.json();
+        console.log('✅ BigDataCloud Geocoding data received:', data);
+        
+        if (data.city) {
+            return data.city; // Prefer city name
+        } else if (data.principalSubdivision) {
+            return data.principalSubdivision; // Fallback to subdivision (e.g., province/state)
+        } else if (data.countryName) {
+            return data.countryName; // Fallback to country name
+        } else {
+            return 'Your Location';
+        }
     } catch (error) {
-        console.warn('⚠️ Could not get location name:', error);
+        console.warn('⚠️ Could not get accurate location name from BigDataCloud:', error);
         return 'Your Location';
     }
 }
