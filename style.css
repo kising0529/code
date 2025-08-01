@@ -1691,6 +1691,26 @@ select#language-select option {
     .subtitle {
         font-size: var(--font-size-base);
     }
+
+    .language-selector {
+        margin-top: var(--space-lg); /* Adjust margin for mobile */
+        margin-bottom: var(--space-xl);
+        font-size: var(--font-size-lg); /* Larger font size for mobile */
+    }
+
+    .language-selector label {
+        font-size: var(--font-size-lg); /* Larger label for mobile */
+    }
+
+    select#language-select {
+        font-size: var(--font-size-lg); /* Larger font size for mobile */
+        padding: var(--space-md) var(--space-xl); /* Increased padding for easier touch */
+        width: 100%; /* Make it full width on mobile */
+        max-width: 300px; /* Limit max width for better aesthetics */
+        background-position: right 1em top 50%; /* Adjust arrow position */
+        background-size: 1.5em auto; /* Make arrow slightly larger */
+        padding-right: 3em; /* Adjust padding for larger arrow */
+    }
     
     .weather-main {
         flex-direction: column;
