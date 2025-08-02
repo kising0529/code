@@ -531,7 +531,7 @@ const AMAZON_PRODUCTS = {
         summer_blouse: {
             name: "Flowy Summer Blouse",
             price: "$29.99",
-            image: "https://images.unsplash.com/photo-1564257577-3a0b6eaab773?w=300&h=300&fit=crop",
+            image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=300&h=300&fit=crop",
             affiliate: "https://amzn.to/women-summer-blouse",
             category: "tops"
         },
@@ -2115,7 +2115,9 @@ function updateProductRecommendations(products) {
 
     const productsHTML = products.map(product => `
         <div class="product-item">
-            <img src="${product.image}" alt="${product.name}" class="product-image">
+            <a href="${product.affiliate}" target="_blank" rel="noopener noreferrer" class="product-image-link">
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+            </a>
             <div class="product-info">
                 <h5 class="product-name">${product.name}</h5>
                 <p class="product-price">${product.price}</p>
