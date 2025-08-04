@@ -2084,24 +2084,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Update outfit UI to show gender-specific recommendations
 function updateOutfitUI(outfitData) {
-    const genderText = appState.selectedGender === 'female' ? 'Women\'s' : 'Men\'s';
-    const styleText = appState.selectedStyle.charAt(0).toUpperCase() + appState.selectedStyle.slice(1); // Capitalize first letter
-    
-    document.getElementById('outfit-summary').textContent = outfitData.summary;
-    document.getElementById('clothing-items').textContent = outfitData.clothing; // Corrected ID
-    document.getElementById('footwear').textContent = outfitData.footwear;       // Corrected ID
-    document.getElementById('accessories').textContent = outfitData.accessories; // Corrected ID
-    document.getElementById('outfit-style-display').textContent = outfitData.style; // Corrected ID
-    
-    // Hide AI image prompt related elements by default
-    const aiPromptElement = document.getElementById('ai-prompt');
-    const promptPreviewElement = document.querySelector('.prompt-preview');
+    console.log('DEBUG: updateOutfitUI called with outfitData:', outfitData);
+    const outfitStyleDisplayElement = document.getElementById('outfit-style-display');
+    console.log('DEBUG: outfit-style-display element:', outfitStyleDisplayElement);
 
-    if (aiPromptElement) aiPromptElement.classList.add('hidden');
-    if (promptPreviewElement) promptPreviewElement.classList.add('hidden');
+    if (outfitStyleDisplayElement) {
+        const genderText = appState.selectedGender === 'female' ? 'Women\'s' : 'Men\'s';
+        const styleText = appState.selectedStyle.charAt(0).toUpperCase() + appState.selectedStyle.slice(1); // Capitalize first letter
+        
+        document.getElementById('outfit-summary').textContent = outfitData.summary;
+        document.getElementById('clothing-items').textContent = outfitData.clothing;
+        document.getElementById('footwear').textContent = outfitData.footwear;
+        document.getElementById('accessories').textContent = outfitData.accessories;
+        outfitStyleDisplayElement.textContent = outfitData.style; // Using the checked element
+        
+        // Hide AI image prompt related elements by default
+        const aiPromptElement = document.getElementById('ai-prompt');
+        const promptPreviewElement = document.querySelector('.prompt-preview');
 
-    // Update product recommendations
-    updateProductRecommendations(outfitData.products);
+        if (aiPromptElement) aiPromptElement.classList.add('hidden');
+        if (promptPreviewElement) promptPreviewElement.classList.add('hidden');
+
+        // Update product recommendations
+        updateProductRecommendations(outfitData.products);
+    } else {
+        console.error('ERROR: outfit-style-display element not found in DOM!');
+    }
 }
 
 function updateProductRecommendations(products) {
