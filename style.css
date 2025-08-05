@@ -151,29 +151,9 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
-/* Global Indicator */
-.global-indicator {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
-    background: var(--accent-gradient);
-    color: var(--white);
-    padding: var(--space-sm) var(--space-lg);
-    border-radius: var(--radius-full);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    box-shadow: var(--shadow-md);
-}
 
-.globe-icon {
-    font-size: var(--font-size-base);
-    animation: rotate 20s linear infinite;
-}
 
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
+
 
 /* Language Selector Styles */
 .language-selector {

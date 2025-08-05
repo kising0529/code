@@ -95,7 +95,38 @@ const translations = {
         "trends.trend4Title": "4. Gender-Neutral Apparel",
         "trends.trend4Text": "Fashion is becoming increasingly inclusive, with more brands offering gender-neutral collections that challenge traditional norms.",
         "trends.trend5Title": "5. Vintage & Retro Revival",
-        "trends.trend5Text": "Nostalgia plays a big role, with fashion drawing inspiration from past decades, particularly the 70s, 90s, and early 2000s."
+        "trends.trend5Text": "Nostalgia plays a big role, with fashion drawing inspiration from past decades, particularly the 70s, 90s, and early 2000s.",
+
+        "tomorrow.title": "🌅 Tomorrow's Outfit Preview",
+        "tomorrow.subtitle": "Get ready for tomorrow with AI-powered fashion forecast",
+
+        "tomorrow.loading.title": "Analyzing Tomorrow's Weather...",
+        "tomorrow.loading.text": "Preparing your fashion forecast for tomorrow",
+        "tomorrow.loading.steps.weather": "Fetching tomorrow's weather",
+        "tomorrow.loading.steps.outfit": "Generating tomorrow's outfit",
+        "tomorrow.loading.steps.image": "Creating fashion preview",
+        "tomorrow.weather.title": "Tomorrow's Weather Forecast",
+        "tomorrow.weather.dateLoading": "📅 Loading date...",
+        "tomorrow.outfit.title": "Perfect Outfit for Tomorrow",
+        "tomorrow.outfit.aiRecommended": "AI Fashion Forecast",
+        "tomorrow.outfit.analyzing": "Analyzing tomorrow's weather conditions to recommend the perfect outfit...",
+        "tomorrow.outfit.generateImage": "Generate Tomorrow's Outfit Image",
+        "tomorrow.outfit.generateNote": "AI will create outfit images based on tomorrow's weather forecast",
+
+
+        "tomorrow.howItWorks.title": "How Tomorrow's Forecast Works",
+        "tomorrow.howItWorks.steps.location.title": "Auto Location",
+        "tomorrow.howItWorks.steps.location.description": "We detect your location to get accurate tomorrow's weather forecast",
+        "tomorrow.howItWorks.steps.weather.title": "Tomorrow's Weather",
+        "tomorrow.howItWorks.steps.weather.description": "Advanced weather prediction for tomorrow's conditions and temperature",
+        "tomorrow.howItWorks.steps.ai.title": "AI Fashion Forecast",
+        "tomorrow.howItWorks.steps.ai.description": "Smart algorithms predict the perfect outfit for tomorrow's weather",
+        "tomorrow.howItWorks.steps.visual.title": "Visual Preview",
+        "tomorrow.howItWorks.steps.visual.description": "Generate stunning AI images of tomorrow's recommended outfit",
+        "tomorrow.error.message": "Please enable location access and refresh the page to get tomorrow's weather-based outfit recommendations.",
+        "tomorrow.footer.brandName": "Tomorrow's AI Outfit",
+        "tomorrow.footer.brandSlogan": "Fashion forecast for tomorrow's weather worldwide",
+        "tomorrow.footer.copy": "© 2024 Tomorrow's AI Outfit. Fashion forecast powered by Open-Meteo API."
     },
     ko: {
         "app.title": "오늘의 AI 코디",
@@ -184,7 +215,38 @@ const translations = {
         "trends.trend4Title": "4. 성 중립 의류",
         "trends.trend4Text": "패션은 점점 더 포괄적으로 변하고 있으며, 더 많은 브랜드가 전통적인 규범에 도전하는 성 중립 컬렉션을 제공하고 있습니다.",
         "trends.trend5Title": "5. 빈티지 및 레트로 부활",
-        "trends.trend5Text": "과거 수십 년, 특히 70년대, 90년대, 2000년대 초반에서 영감을 얻은 패션이 향수를 불러일으키며 큰 역할을 하고 있습니다."
+        "trends.trend5Text": "과거 수십 년, 특히 70년대, 90년대, 2000년대 초반에서 영감을 얻은 패션이 향수를 불러일으키며 큰 역할을 하고 있습니다.",
+
+        "tomorrow.title": "🌅 내일의 코디 미리보기",
+        "tomorrow.subtitle": "AI 기반 패션 예보로 내일을 준비하세요",
+
+        "tomorrow.loading.title": "내일의 날씨 분석 중...",
+        "tomorrow.loading.text": "내일을 위한 패션 예보를 준비하고 있습니다",
+        "tomorrow.loading.steps.weather": "내일의 날씨 가져오는 중",
+        "tomorrow.loading.steps.outfit": "내일의 코디 생성 중",
+        "tomorrow.loading.steps.image": "패션 미리보기 생성 중",
+        "tomorrow.weather.title": "내일의 날씨 예보",
+        "tomorrow.weather.dateLoading": "📅 날짜 로딩 중...",
+        "tomorrow.outfit.title": "내일을 위한 완벽한 코디",
+        "tomorrow.outfit.aiRecommended": "AI 패션 예보",
+        "tomorrow.outfit.analyzing": "내일의 날씨 조건을 분석하여 완벽한 코디를 추천하고 있습니다...",
+        "tomorrow.outfit.generateImage": "내일의 코디 이미지 생성",
+        "tomorrow.outfit.generateNote": "AI가 내일의 날씨 예보를 바탕으로 코디 이미지를 생성합니다",
+
+
+        "tomorrow.howItWorks.title": "내일의 예보 작동 방식",
+        "tomorrow.howItWorks.steps.location.title": "자동 위치",
+        "tomorrow.howItWorks.steps.location.description": "정확한 내일의 날씨 예보를 위해 귀하의 위치를 감지합니다",
+        "tomorrow.howItWorks.steps.weather.title": "내일의 날씨",
+        "tomorrow.howItWorks.steps.weather.description": "내일의 날씨 조건과 온도에 대한 고급 날씨 예측",
+        "tomorrow.howItWorks.steps.ai.title": "AI 패션 예보",
+        "tomorrow.howItWorks.steps.ai.description": "스마트 알고리즘이 내일의 날씨에 완벽한 코디를 예측합니다",
+        "tomorrow.howItWorks.steps.visual.title": "시각적 미리보기",
+        "tomorrow.howItWorks.steps.visual.description": "내일의 추천 코디의 멋진 AI 이미지를 생성합니다",
+        "tomorrow.error.message": "위치 액세스를 활성화하고 페이지를 새로고침하여 내일의 날씨 기반 코디 추천을 받으세요.",
+        "tomorrow.footer.brandName": "내일의 AI 코디",
+        "tomorrow.footer.brandSlogan": "전 세계 내일의 날씨를 위한 패션 예보",
+        "tomorrow.footer.copy": "© 2024 내일의 AI 코디. Open-Meteo API로 구동되는 패션 예보."
     },
     ja: {
         "app.title": "今日のAIコーデ",
@@ -273,7 +335,38 @@ const translations = {
         "trends.trend4Title": "4. ジェンダーニュートラルアパレル",
         "trends.trend4Text": "ファッションはますます包括的になり、より多くのブランドが従来の規範に挑戦するジェンダーニュートラルなコレクションを提供しています。",
         "trends.trend5Title": "5. ヴィンテージ＆レトロリバイバル",
-        "trends.trend5Text": "ノスタルジアが大きな役割を果たしており、特に70年代、90年代、2000年代初頭など、過去数十年のファッションからインスピレーションを得ています。"
+        "trends.trend5Text": "ノスタルジアが大きな役割を果たしており、特に70年代、90年代、2000年代初頭など、過去数十年のファッションからインスピレーションを得ています。",
+
+        "tomorrow.title": "🌅 明日のコーデ プレビュー",
+        "tomorrow.subtitle": "AI搭載ファッション予報で明日の準備をしましょう",
+
+        "tomorrow.loading.title": "明日の天気を分析中...",
+        "tomorrow.loading.text": "明日のファッション予報を準備しています",
+        "tomorrow.loading.steps.weather": "明日の天気を取得中",
+        "tomorrow.loading.steps.outfit": "明日のコーデを生成中",
+        "tomorrow.loading.steps.image": "ファッションプレビューを作成中",
+        "tomorrow.weather.title": "明日の天気予報",
+        "tomorrow.weather.dateLoading": "📅 日付を読み込み中...",
+        "tomorrow.outfit.title": "明日のための完璧なコーデ",
+        "tomorrow.outfit.aiRecommended": "AIファッション予報",
+        "tomorrow.outfit.analyzing": "明日の天気条件を分析して完璧なコーデを推薦しています...",
+        "tomorrow.outfit.generateImage": "明日のコーデ画像を生成",
+        "tomorrow.outfit.generateNote": "AIが明日の天気予報に基づいてコーデ画像を作成します",
+
+
+        "tomorrow.howItWorks.title": "明日の予報の仕組み",
+        "tomorrow.howItWorks.steps.location.title": "自動位置情報",
+        "tomorrow.howItWorks.steps.location.description": "正確な明日の天気予報を得るために位置情報を検出します",
+        "tomorrow.howItWorks.steps.weather.title": "明日の天気",
+        "tomorrow.howItWorks.steps.weather.description": "明日の天気条件と気温の高度な天気予測",
+        "tomorrow.howItWorks.steps.ai.title": "AIファッション予報",
+        "tomorrow.howItWorks.steps.ai.description": "スマートアルゴリズムが明日の天気に完璧なコーデを予測します",
+        "tomorrow.howItWorks.steps.visual.title": "ビジュアルプレビュー",
+        "tomorrow.howItWorks.steps.visual.description": "明日の推奨コーデの素晴らしいAI画像を生成します",
+        "tomorrow.error.message": "位置情報アクセスを有効にしてページを更新し、明日の天気ベースのコーデ推奨を受け取ってください。",
+        "tomorrow.footer.brandName": "明日のAIコーデ",
+        "tomorrow.footer.brandSlogan": "世界中の明日の天気のためのファッション予報",
+        "tomorrow.footer.copy": "© 2024 明日のAIコーデ. Open-Meteo APIによるファッション予報."
     },
     zh: {
         "app.title": "今日AI穿搭",
@@ -362,7 +455,38 @@ const translations = {
         "trends.trend4Title": "4. 无性别服装",
         "trends.trend4Text": "时尚正变得越来越包容，越来越多的品牌提供挑战传统规范的无性别系列。",
         "trends.trend5Title": "5. 复古潮流回归",
-        "trends.trend5Text": "怀旧情结扮演着重要角色，时尚从过去的几十年中汲取灵感，尤其是70年代、90年代和2000年代初期。"
+        "trends.trend5Text": "怀旧情结扮演着重要角色，时尚从过去的几十年中汲取灵感，尤其是70年代、90年代和2000年代初期。",
+
+        "tomorrow.title": "🌅 明日穿搭预览",
+        "tomorrow.subtitle": "用AI驱动的时尚预报为明天做准备",
+
+        "tomorrow.loading.title": "正在分析明天的天气...",
+        "tomorrow.loading.text": "正在为您准备明天的时尚预报",
+        "tomorrow.loading.steps.weather": "正在获取明天的天气",
+        "tomorrow.loading.steps.outfit": "正在生成明天的穿搭",
+        "tomorrow.loading.steps.image": "正在创建时尚预览",
+        "tomorrow.weather.title": "明天的天气预报",
+        "tomorrow.weather.dateLoading": "📅 正在加载日期...",
+        "tomorrow.outfit.title": "明天的完美穿搭",
+        "tomorrow.outfit.aiRecommended": "AI时尚预报",
+        "tomorrow.outfit.analyzing": "正在分析明天的天气条件以推荐完美的穿搭...",
+        "tomorrow.outfit.generateImage": "生成明天的穿搭图片",
+        "tomorrow.outfit.generateNote": "AI将根据明天的天气预报创建穿搭图片",
+
+
+        "tomorrow.howItWorks.title": "明天预报的工作原理",
+        "tomorrow.howItWorks.steps.location.title": "自动定位",
+        "tomorrow.howItWorks.steps.location.description": "我们检测您的位置以获得准确的明天天气预报",
+        "tomorrow.howItWorks.steps.weather.title": "明天的天气",
+        "tomorrow.howItWorks.steps.weather.description": "明天天气条件和温度的高级天气预测",
+        "tomorrow.howItWorks.steps.ai.title": "AI时尚预报",
+        "tomorrow.howItWorks.steps.ai.description": "智能算法预测明天天气的完美穿搭",
+        "tomorrow.howItWorks.steps.visual.title": "视觉预览",
+        "tomorrow.howItWorks.steps.visual.description": "生成明天推荐穿搭的精美AI图片",
+        "tomorrow.error.message": "请启用位置访问并刷新页面以获取基于明天天气的穿搭推荐。",
+        "tomorrow.footer.brandName": "明日AI穿搭",
+        "tomorrow.footer.brandSlogan": "全球明天天气的时尚预报",
+        "tomorrow.footer.copy": "© 2024 明日AI穿搭. 由Open-Meteo API提供的时尚预报."
     }
 };
 
@@ -1619,12 +1743,18 @@ async function generateMultipleImages(prompt, gender) {
             'sophisticated dresser',
             'chic fashion enthusiast',
             'modern style icon',
-            'runway model', /* New */
-            'magazine cover model', /* New */
-            'street style icon', /* New */
-            'high fashion editorial', /* New */
-            'minimalist aesthetic', /* New */
-            'avant-garde fashion' /* New */
+            'runway model',
+            'magazine cover model',
+            'street style icon',
+            'high fashion editorial',
+            'minimalist aesthetic',
+            'avant-garde fashion',
+            'bohemian style icon',
+            'vintage fashion enthusiast',
+            'contemporary artist',
+            'urban fashion blogger',
+            'lifestyle influencer',
+            'creative professional'
         ];
         
         const backgroundVariations = [
@@ -1634,11 +1764,20 @@ async function generateMultipleImages(prompt, gender) {
             'minimalist backdrop',
             'city environment',
             'contemporary setting',
-            'dramatic cityscape', /* New */
-            'serene nature backdrop', /* New */
-            'futuristic architecture', /* New */
-            'vintage industrial space', /* New */
-            'luxury interior' /* New */
+            'dramatic cityscape',
+            'serene nature backdrop',
+            'futuristic architecture',
+            'vintage industrial space',
+            'luxury interior',
+            'artistic loft space',
+            'rooftop terrace',
+            'cozy cafe setting',
+            'modern office lobby',
+            'park with autumn leaves',
+            'beach boardwalk',
+            'mountain landscape',
+            'urban art district',
+            'boutique hotel lobby'
         ];
         
         const poseVariations = [
@@ -1648,21 +1787,64 @@ async function generateMultipleImages(prompt, gender) {
             'dynamic pose',
             'relaxed position',
             'fashion pose',
-            'walking pose', /* New */
-            'sitting pose', /* New */
-            'candid shot', /* New */
-            'profile view', /* New */
-            'full body view' /* New */
+            'walking pose',
+            'sitting pose',
+            'candid shot',
+            'profile view',
+            'full body view',
+            'leaning against wall',
+            'hands in pockets',
+            'looking over shoulder',
+            'mid-stride walking',
+            'thoughtful expression',
+            'laughing naturally',
+            'wind-blown hair',
+            'crossed arms confidently',
+            'adjusting accessories'
         ];
         
+        // Additional diversity elements
+        const lightingVariations = [
+            'golden hour lighting',
+            'soft natural light',
+            'dramatic shadows',
+            'bright daylight',
+            'warm studio lighting',
+            'cool blue tones',
+            'sunset glow',
+            'overcast soft light',
+            'morning sunlight',
+            'evening ambiance'
+        ];
+        
+        const cameraAngles = [
+            'eye level shot',
+            'slightly low angle',
+            'high fashion angle',
+            'three-quarter view',
+            'front facing',
+            'side profile',
+            'dynamic angle',
+            'editorial perspective',
+            'candid angle',
+            'artistic composition'
+        ];
+        
+        // Select random elements for maximum diversity
         const selectedStyle = styleVariations[Math.floor(Math.random() * styleVariations.length)];
         const selectedBackground = backgroundVariations[Math.floor(Math.random() * backgroundVariations.length)];
         const selectedPose = poseVariations[Math.floor(Math.random() * poseVariations.length)];
+        const selectedLighting = lightingVariations[Math.floor(Math.random() * lightingVariations.length)];
+        const selectedAngle = cameraAngles[Math.floor(Math.random() * cameraAngles.length)];
         
-        const enhancedPrompt = `${genderSubject}, ${selectedStyle} ${prompt}, ${selectedPose}, ${selectedBackground}, no objects only, no clothing items only, must show person wearing clothes, human figure required, fashion model, person visible, realistic photography, high quality, detailed`;
+        // Generate unique seed for each image to ensure variety
+        const uniqueSeed1 = Math.floor(Math.random() * 999999) + timestamp;
+        const uniqueSeed2 = Math.floor(Math.random() * 999999) + timestamp + 1000;
+        
+        const enhancedPrompt = `${genderSubject}, ${selectedStyle} ${prompt}, ${selectedPose}, ${selectedBackground}, ${selectedLighting}, ${selectedAngle}, no objects only, no clothing items only, must show person wearing clothes, human figure required, fashion model, person visible, realistic photography, high quality, detailed`;
         
         // Method 1: Use Pollinations AI with Flux model
-        const pollinationsUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(enhancedPrompt)}?width=512&height=768&model=flux&enhance=true&nologo=true&seed=${Date.now()}&timestamp=${timestamp}&session=${sessionId}`;
+        const pollinationsUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(enhancedPrompt)}?width=512&height=768&model=flux&enhance=true&nologo=true&seed=${uniqueSeed1}&timestamp=${timestamp}&session=${sessionId}`;
         imageResults.push({
             url: pollinationsUrl,
             service: 'Pollinations AI (Flux)',
@@ -1675,9 +1857,11 @@ async function generateMultipleImages(prompt, gender) {
         const altStyle = styleVariations[Math.floor(Math.random() * styleVariations.length)];
         const altBackground = backgroundVariations[Math.floor(Math.random() * backgroundVariations.length)];
         const altPose = poseVariations[Math.floor(Math.random() * poseVariations.length)];
+        const altLighting = lightingVariations[Math.floor(Math.random() * lightingVariations.length)];
+        const altAngle = cameraAngles[Math.floor(Math.random() * cameraAngles.length)];
         
-        const altPrompt = `${genderSubject}, ${altStyle} wearing ${prompt}, ${altPose}, ${altBackground}, photorealistic, high fashion, professional photography, detailed clothing, person clearly visible, full body shot`;
-        const pollinationsUrl2 = `https://image.pollinations.ai/prompt/${encodeURIComponent(altPrompt)}?width=512&height=768&model=turbo&enhance=true&seed=${Date.now() + 1}&timestamp=${timestamp + 1000}&session=${sessionId}_alt`;
+        const altPrompt = `${genderSubject}, ${altStyle} wearing ${prompt}, ${altPose}, ${altBackground}, ${altLighting}, ${altAngle}, photorealistic, high fashion, professional photography, detailed clothing, person clearly visible, full body shot`;
+        const pollinationsUrl2 = `https://image.pollinations.ai/prompt/${encodeURIComponent(altPrompt)}?width=512&height=768&model=turbo&enhance=true&seed=${uniqueSeed2}&timestamp=${timestamp + 1000}&session=${sessionId}_alt`;
         imageResults.push({
             url: pollinationsUrl2,
             service: 'Pollinations AI (Turbo)',

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YM798MGCTD"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6046915312271415"
+     crossorigin="anonymous"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YM798MGCTD');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomorrow's Outfit Preview - AI Fashion Forecast</title>
+    <meta name="description" content="Preview tomorrow's perfect outfit with AI-powered fashion recommendations. Get ahead of tomorrow's weather with smart style suggestions.">
+    <meta name="keywords" content="tomorrow outfit, AI fashion forecast, weather outfit preview, tomorrow style, AI fashion prediction">
+    <meta name="author" content="AI Outfit for Today">
+
+    <!-- Open Graph (Facebook, KakaoTalk, LinkedIn 등) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tomorrow's Outfit Preview">
+    <meta property="og:description" content="Preview tomorrow's perfect outfit with AI fashion recommendations based on weather forecast.">
+    <meta property="og:image" content="https://outfitfortoday.pages.dev/og-image.jpg">
+    <meta property="og:url" content="https://outfitfortoday.pages.dev/tomorrow-preview.html">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tomorrow's Outfit Preview">
+    <meta name="twitter:description" content="Get ready for tomorrow with AI-powered fashion recommendations.">
+    <meta name="twitter:image" content="https://outfitfortoday.pages.dev/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌅</text></svg>">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#764ba2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Tomorrow's Outfit">
+    
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="language-selector">
+                <select id="language-select" class="language-select">
+                    <option value="en">🇺🇸 English</option>
+                    <option value="ko">🇰🇷 한국어</option>
+                    <option value="ja">🇯🇵 日本語</option>
+                    <option value="zh">🇨🇳 中文</option>
+                </select>
+            </div>
+            <h1 class="title" data-i18n="tomorrow.title">🌅 AI Outfit for Tomorrow</h1>
+            <p class="subtitle" data-i18n="tomorrow.subtitle">Weather-smart fashion recommendations powered by AI</p>
+            
+            <nav class="main-nav">
+                <a href="https://outfitfortoday.pages.dev/" class="nav-button">🌤️ Today's Outfit</a>
+                <a href="liked.html" class="nav-button">❤️ Your Liked Outfits</a>
+                <a href="trends.html" class="nav-button">📈 Latest Trends</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <!-- Loading State -->
+            <div id="loading-section" class="loading-section">
+                <div class="loading-animation">
+                    <div class="weather-spinner"></div>
+                    <div class="loading-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <h2 class="loading-title" data-i18n="tomorrow.loading.title">Analyzing Tomorrow's Weather...</h2>
+                <p class="loading-text" data-i18n="tomorrow.loading.text">Detecting location and gathering weather data</p>
+                <div class="loading-steps">
+                    <div class="step" id="step-location">
+                        <span class="step-icon">📍</span>
+                        <span class="step-text" data-i18n="tomorrow.loading.steps.weather">Getting your location</span>
+                    </div>
+                    <div class="step" id="step-weather">
+                        <span class="step-icon">🌡️</span>
+                        <span class="step-text" data-i18n="tomorrow.loading.steps.outfit">Fetching tomorrow's weather data</span>
+                    </div>
+                    <div class="step" id="step-outfit">
+                        <span class="step-icon">👔</span>
+                        <span class="step-text" data-i18n="tomorrow.loading.steps.outfit">Generating outfit recommendation</span>
+                    </div>
+                    <div class="step" id="step-image">
+                        <span class="step-icon">🎨</span>
+                        <span class="step-text" data-i18n="tomorrow.loading.steps.image">Preparing AI image generation</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tomorrow's Weather Information Section -->
+            <section id="weather-section" class="weather-section">
+                <div class="weather-card">
+                    <div class="weather-header">
+                        <h2 class="section-title" data-i18n="tomorrow.weather.title">Tomorrow's Weather & Location</h2>
+                        <div class="location-info">
+                            <span id="location-name" class="location-name">📍 Detecting location...</span>
+                            <span id="tomorrow-date" class="local-time" data-i18n="tomorrow.weather.dateLoading">📅 Tomorrow</span>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-display">
+                        <div class="weather-main">
+                            <div class="weather-icon-large">
+                                <span id="weather-icon" class="weather-icon">🌤️</span>
+                            </div>
+                            <div class="weather-details">
+                                <div id="temperature" class="temperature">--°</div>
+                                <div id="weather-condition" class="weather-condition">Loading tomorrow's weather...</div>
+                                <div class="weather-metrics">
+                                    <span id="feels-like" class="metric">Feels like --°</span>
+                                    <span id="humidity" class="metric">Humidity --%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tomorrow's Outfit Recommendation Section -->
+            <section id="outfit-section" class="outfit-section">
+                <div class="outfit-card">
+                    <div class="outfit-header">
+                        <h2 class="section-title" data-i18n="tomorrow.outfit.title">Your AI-Generated Outfit Recommendation</h2>
+                        <div class="ai-badge">
+                            <span class="ai-icon">🤖</span>
+                            <span data-i18n="tomorrow.outfit.aiRecommended">AI Recommendation</span>
+                        </div>
+                    </div>
+                    
+                    <div class="outfit-content">
+                        <div class="outfit-description">
+                            <div id="outfit-summary" class="outfit-summary" data-i18n="tomorrow.outfit.analyzing">
+                                Analyzing tomorrow's weather conditions to recommend the perfect outfit...
+                            </div>
+                            <div id="outfit-details" class="outfit-details">
+                                <div class="detail-item">
+                                    <span class="detail-icon">👕</span>
+                                    <span id="clothing-items" class="detail-text">Loading recommendations...</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">👟</span>
+                                    <span id="footwear" class="detail-text">Selecting footwear...</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">🎒</span>
+                                    <span id="accessories" class="detail-text">Choosing accessories...</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">✨</span>
+                                    <span id="outfit-style-display" class="detail-text">Determining style...</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="image-generation">
+                            <div class="generation-actions">
+                                <div class="gender-selection">
+                                    <h4 class="gender-title" data-i18n="preferences.genderTitle">1. Select Gender</h4>
+                                    <div class="gender-buttons">
+                                        <button class="gender-btn active" data-gender="female">
+                                            <span class="gender-icon">👩</span>
+                                            <span class="gender-text" data-i18n="preferences.female">Female</span>
+                                        </button>
+                                        <button class="gender-btn" data-gender="male">
+                                            <span class="gender-icon">👨</span>
+                                            <span class="gender-text" data-i18n="preferences.male">Male</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="style-selection">
+                                    <h4 class="style-title" data-i18n="preferences.styleTitle">2. Select Style</h4>
+                                    <div class="style-buttons">
+                                        <button class="style-btn active" data-style="casual">
+                                            <span class="style-text" data-i18n="preferences.casual">Casual</span>
+                                        </button>
+                                        <button class="style-btn" data-style="business">
+                                            <span class="style-text" data-i18n="preferences.business">Business</span>
+                                        </button>
+                                        <button class="style-btn" data-style="date">
+                                            <span class="style-text" data-i18n="preferences.date">Date</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <button id="generate-image-btn" class="generate-btn" onclick="generateTomorrowOutfitImage()">
+                                    <span class="btn-icon">🎨</span>
+                                    <span class="btn-text" data-i18n="tomorrow.outfit.generateImage">Generate AI Outfit Image</span>
+                                </button>
+                                <p class="generation-note" data-i18n="tomorrow.outfit.generateNote">
+                                    AI-generated image for visualization. Outfits are recommendations.
+                                </p>
+                                
+                                <!-- Image Generation Container -->
+                                <div id="generated-image-container" class="generated-image-container" style="display: none;">
+                                    <!-- Images will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <!-- AI Prompt is hidden for this page -->
+                            <div class="prompt-preview hidden" style="display: none !important;">
+                                <h3 class="prompt-title">AI Image Prompt</h3>
+                                <div id="ai-prompt" class="prompt-text hidden">
+                                    Hidden prompt for tomorrow's outfit generation...
+                                </div>
+                            </div>
+                            
+                            <!-- Amazon Product Recommendations -->
+                            <div class="product-recommendations">
+
+                                <div id="recommended-products" class="products-grid">
+                                    <!-- Products will be populated by JavaScript -->
+                                </div>
+                                <p class="affiliate-disclaimer">
+                                    <small>💡 As an Amazon Associate, we earn from qualifying purchases. Prices may vary.</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- Error Message -->
+            <div id="error-section" class="error-section hidden">
+                <div class="error-card">
+                    <div class="error-icon">⚠️</div>
+                    <h3 class="error-title" data-i18n="error.title">Unable to Get Weather Data</h3>
+                    <p id="error-message" class="error-message" data-i18n="tomorrow.error.message">
+                        Please enable location access and refresh the page to get weather-based outfit recommendations.
+                    </p>
+                    <button onclick="location.reload()" class="retry-btn">
+                        <span class="btn-icon">🔄</span>
+                        <span class="btn-text" data-i18n="error.tryAgain">Try Again</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 data-i18n="tomorrow.footer.brandName">AI Outfit for Tomorrow</h3>
+                    <p data-i18n="tomorrow.footer.brandSlogan">Weather-smart fashion recommendations powered by AI</p>
+                </div>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="tomorrow.footer.copy">© 2024 AI Outfit for Tomorrow. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="tomorrow-script.js?v=2" defer></script>
+</body>
+</html>
