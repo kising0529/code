@@ -516,58 +516,58 @@ const AMAZON_PRODUCTS = {
     female: {
         winter_coat: {
             name: "Women's Winter Puffer Coat",
-            price: "$89.99",
-            image: "https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/women-winter-coat",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/61FUZ-xv35L._AC_SX569_.jpg",
+            affiliate: "https://amzn.to/4on02Bw",
             category: "outerwear"
         },
         spring_jacket: {
             name: "Lightweight Spring Jacket",
-            price: "$49.99",
-            image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/women-spring-jacket",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/61mTe1kuWdL._AC_SX466_.jpg",
+            affiliate: "https://amzn.to/4fqmqG3",
             category: "outerwear"
         },
         summer_blouse: {
             name: "Flowy Summer Blouse",
-            price: "$29.99",
-            image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/women-summer-blouse",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/71gYKEETzAL._AC_SX679_.jpg",
+            affiliate: "https://amzn.to/4mnuR77",
             category: "tops"
         },
         jeans: {
             name: "High-Waisted Skinny Jeans",
-            price: "$39.99",
-            image: "https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/women-jeans",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/51u9zd4tMuL._AC_SX466_.jpg",
+            affiliate: "https://amzn.to/41pWwME",
             category: "bottoms"
         },
         ankle_boots: {
             name: "Stylish Ankle Boots",
-            price: "$69.99",
-            image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/women-ankle-boots",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/71jz1gFIw8L._AC_SY500_.jpg",
+            affiliate: "https://amzn.to/4fq524c",
             category: "shoes"
         },
         sandals: {
             name: "Comfortable Summer Sandals",
-            price: "$34.99",
-            image: "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/women-sandals",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/71+mXAInehL._AC_SX500_.jpg",
+            affiliate: "https://amzn.to/3UcL5nG",
             category: "shoes"
         },
         umbrella: {
             name: "Compact Travel Umbrella",
-            price: "$19.99",
-            image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/compact-umbrella",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/71zIdlkvCYL._AC_SY606_.jpg",
+            affiliate: "https://amzn.to/3H7qXR5",
             category: "accessories"
         },
         sunglasses: {
             name: "Trendy Sunglasses",
-            price: "$24.99",
-            image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/women-sunglasses",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/61OWQuAXOmL._AC_SX569_.jpg",
+            affiliate: "https://amzn.to/4ldLkd8",
             category: "accessories"
         }
     },
@@ -575,58 +575,58 @@ const AMAZON_PRODUCTS = {
     male: {
         winter_jacket: {
             name: "Men's Winter Parka",
-            price: "$99.99",
-            image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/men-winter-parka",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/71bUNRWp1EL._AC_SX522_.jpg",
+            affiliate: "https://amzn.to/3J0uuRC",
             category: "outerwear"
         },
         casual_jacket: {
             name: "Casual Spring Jacket",
-            price: "$59.99",
-            image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/men-casual-jacket",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/61-Zj9GaFnL._AC_SX679_.jpg",
+            affiliate: "https://amzn.to/41mdpI8",
             category: "outerwear"
         },
         polo_shirt: {
             name: "Classic Polo Shirt",
-            price: "$24.99",
-            image: "https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/men-polo-shirt",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/81LUX6h9NVL._AC_SX569_.jpg",
+            affiliate: "https://amzn.to/4fkqbN4",
             category: "tops"
         },
         chinos: {
             name: "Slim Fit Chino Pants",
-            price: "$34.99",
-            image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/men-chinos",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/612D6TEIEoL._AC_SY741_.jpg",
+            affiliate: "https://amzn.to/3ULfucY",
             category: "bottoms"
         },
         sneakers: {
             name: "Casual Sneakers",
-            price: "$79.99",
-            image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/men-sneakers",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/711lA5rk08L._AC_SY625_.jpg",
+            affiliate: "https://amzn.to/3J0sY23",
             category: "shoes"
         },
         boat_shoes: {
             name: "Classic Boat Shoes",
-            price: "$54.99",
-            image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/men-boat-shoes",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/51RtzZIlnoL._AC_SY625_.jpg",
+            affiliate: "https://amzn.to/3HfitHB",
             category: "shoes"
         },
         cap: {
             name: "Baseball Cap",
-            price: "$18.99",
-            image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/men-baseball-cap",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/712CSDnz+mL._AC_SX679_.jpg",
+            affiliate: "https://amzn.to/4ojKBKg",
             category: "accessories"
         },
         sunglasses: {
             name: "Classic Aviator Sunglasses",
-            price: "$29.99",
-            image: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=300&h=300&fit=crop",
-            affiliate: "https://amzn.to/men-sunglasses",
+            price: "",
+            image: "https://m.media-amazon.com/images/I/61Rvz5ust9L._AC_SX569_.jpg",
+            affiliate: "https://amzn.to/4fmwRdN",
             category: "accessories"
         }
     }
